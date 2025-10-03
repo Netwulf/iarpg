@@ -13,9 +13,14 @@ COPY . .
 RUN pnpm install --no-frozen-lockfile
 
 # Build API
-RUN pnpm --filter=api build && \
+RUN echo "=== Building API ===" && \
+    cd apps/api && \
+    pwd && \
+    ls -la src/ && \
+    cat tsconfig.json && \
+    pnpm build && \
     echo "=== Build Complete - Dist Contents ===" && \
-    ls -laR apps/api/dist/
+    ls -laR dist/
 
 # Set environment
 ENV NODE_ENV=production
