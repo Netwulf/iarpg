@@ -13,14 +13,8 @@ COPY . .
 RUN pnpm install --no-frozen-lockfile
 
 # Build API
-RUN echo "=== Building API ===" && \
-    cd apps/api && \
-    pwd && \
-    ls -la src/ && \
-    cat tsconfig.json && \
-    pnpm build && \
-    echo "=== Build Complete - Dist Contents ===" && \
-    ls -laR dist/
+WORKDIR /app/apps/api
+RUN pnpm build && ls -laR dist/
 
 # Set environment
 ENV NODE_ENV=production
@@ -28,6 +22,5 @@ ENV PORT=3001
 
 EXPOSE 3001
 
-# Start
-WORKDIR /app/apps/api
+# Start from /app/apps/api (already set by previous WORKDIR)
 CMD ["node", "dist/server.js"]
