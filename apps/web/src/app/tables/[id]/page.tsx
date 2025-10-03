@@ -1,3 +1,5 @@
+'use client';
+
 import { TablePageClient } from './table-page-client';
 
 export default function TablePage({ params }: { params: { id: string } }) {

@@ -1,3 +1,5 @@
+'use client';
+
 import { requireAuth } from '@/lib/auth-helpers';
 import Link from 'next/link';
 import { Button } from '@iarpg/ui';

@@ -1,3 +1,5 @@
+'use client';
+
 import { requireAuth } from '@/lib/auth-helpers';
 import { Button, Card, CardHeader, CardTitle, CardContent } from '@iarpg/ui';
 

@@ -1,3 +1,5 @@
+'use client';
+
 import { requireAuth } from '@/lib/auth-helpers';
 import { JoinTableClient } from './join-table-client';
 
