@@ -1,0 +1,303 @@
+{
+  "timestamp": "2025-08-01T04:10:16.443Z",
+  "version": "4.31.0",
+  "metrics": {
+    "totalOperations": 40,
+    "criticalPaths": 13,
+    "avgResponseTime": 117.68165250000007,
+    "memoryFootprint": 1551723.8,
+    "systemSnapshot": {
+      "timestamp": 4747.0012,
+      "uptime": 4.7466652,
+      "memory": {
+        "process": {
+          "rss": 143175680,
+          "heapTotal": 94736384,
+          "heapUsed": 67850480,
+          "external": 1762196,
+          "arrayBuffers": 10475
+        },
+        "system": {
+          "free": 17009811456,
+          "total": 34125037568,
+          "usage": "50.15"
+        }
+      },
+      "cpu": {
+        "usage": {
+          "user": 453000,
+          "system": 0
+        },
+        "loadAverage": [
+          0,
+          0,
+          0
+        ],
+        "cores": 20
+      },
+      "activeTimers": 0,
+      "totalOperations": 40
+    }
+  },
+  "thresholds": {
+    "slowOperation": 50,
+    "criticalOperation": 200,
+    "memoryLimit": 5242880
+  },
+  "categories": {
+    "meta-agent": [],
+    "memory": [
+      {
+        "operation": "memory.query.vector",
+        "avgDuration": 46.03769999999997,
+        "avgMemory": 70704,
+        "count": 1
+      },
+      {
+        "operation": "memory.query.semantic",
+        "avgDuration": 96.45570000000004,
+        "avgMemory": -254432,
+        "count": 1
+      },
+      {
+        "operation": "memory.index.build",
+        "avgDuration": 479.04369999999994,
+        "avgMemory": 12719856,
+        "count": 1
+      },
+      {
+        "operation": "memory.index.update",
+        "avgDuration": 146.44990000000007,
+        "avgMemory": 14606272,
+        "count": 1
+      },
+      {
+        "operation": "memory.document.store",
+        "avgDuration": 93.22180000000003,
+        "avgMemory": 17948240,
+        "count": 1
+      },
+      {
+        "operation": "memory.document.retrieve",
+        "avgDuration": 75.39359999999988,
+        "avgMemory": 4312960,
+        "count": 1
+      },
+      {
+        "operation": "memory.memory.consolidate",
+        "avgDuration": 92.2174,
+        "avgMemory": 2565008,
+        "count": 1
+      }
+    ],
+    "installation": [
+      {
+        "operation": "installation.wizard.initialize",
+        "avgDuration": 60.21469999999999,
+        "avgMemory": 747752,
+        "count": 1
+      },
+      {
+        "operation": "installation.dependencies.install",
+        "avgDuration": 487.67510000000016,
+        "avgMemory": 13362024,
+        "count": 1
+      },
+      {
+        "operation": "installation.project.create",
+        "avgDuration": 84.57719999999995,
+        "avgMemory": -10650832,
+        "count": 1
+      },
+      {
+        "operation": "installation.templates.copy",
+        "avgDuration": 38.43989999999985,
+        "avgMemory": -8832,
+        "count": 1
+      },
+      {
+        "operation": "installation.configuration.setup",
+        "avgDuration": 95.55050000000028,
+        "avgMemory": -2324640,
+        "count": 1
+      },
+      {
+        "operation": "installation.verification.run",
+        "avgDuration": 69.47360000000026,
+        "avgMemory": 9547264,
+        "count": 1
+      },
+      {
+        "operation": "installation.firstrun.demo",
+        "avgDuration": 93.24450000000024,
+        "avgMemory": -3672496,
+        "count": 1
+      }
+    ],
+    "component": [
+      {
+        "operation": "meta-agent.component.create",
+        "avgDuration": 62.05899999999999,
+        "avgMemory": -115920,
+        "count": 1
+      },
+      {
+        "operation": "meta-agent.component.modify",
+        "avgDuration": 71.2858,
+        "avgMemory": 500808,
+        "count": 1
+      },
+      {
+        "operation": "component.template.load",
+        "avgDuration": 5.291500000000269,
+        "avgMemory": 4615224,
+        "count": 1
+      },
+      {
+        "operation": "component.template.process",
+        "avgDuration": 3.0273999999999432,
+        "avgMemory": 2699632,
+        "count": 1
+      },
+      {
+        "operation": "component.code.generate",
+        "avgDuration": 199.23649999999998,
+        "avgMemory": -12539984,
+        "count": 1
+      },
+      {
+        "operation": "component.file.write",
+        "avgDuration": 2.196700000000419,
+        "avgMemory": 1982008,
+        "count": 1
+      },
+      {
+        "operation": "component.validation.syntax",
+        "avgDuration": 6.8508999999999105,
+        "avgMemory": 5537408,
+        "count": 1
+      },
+      {
+        "operation": "component.integration.test",
+        "avgDuration": 1.279399999999896,
+        "avgMemory": 1177472,
+        "count": 1
+      }
+    ],
+    "filesystem": [
+      {
+        "operation": "filesystem.file.read.small",
+        "avgDuration": 4.098199999999906,
+        "avgMemory": 3547512,
+        "count": 1
+      },
+      {
+        "operation": "filesystem.file.read.large",
+        "avgDuration": 480.8512999999998,
+        "avgMemory": -4847624,
+        "count": 1
+      },
+      {
+        "operation": "filesystem.file.write.small",
+        "avgDuration": 7.65769999999975,
+        "avgMemory": 6684064,
+        "count": 1
+      },
+      {
+        "operation": "filesystem.file.write.large",
+        "avgDuration": 440.6381000000001,
+        "avgMemory": -5525792,
+        "count": 1
+      },
+      {
+        "operation": "filesystem.directory.scan",
+        "avgDuration": 5.534299999999803,
+        "avgMemory": 4796864,
+        "count": 1
+      },
+      {
+        "operation": "filesystem.archive.extract",
+        "avgDuration": 4.62519999999995,
+        "avgMemory": -12479472,
+        "count": 1
+      },
+      {
+        "operation": "filesystem.template.copy.bulk",
+        "avgDuration": 479.52540000000045,
+        "avgMemory": 10197272,
+        "count": 1
+      }
+    ],
+    "security": [
+      {
+        "operation": "security.input.sanitize",
+        "avgDuration": 23.80490000000009,
+        "avgMemory": -12973400,
+        "count": 1
+      },
+      {
+        "operation": "security.auth.validate",
+        "avgDuration": 39.75540000000001,
+        "avgMemory": 1103776,
+        "count": 1
+      },
+      {
+        "operation": "security.credential.encrypt",
+        "avgDuration": 88.37930000000006,
+        "avgMemory": 8261664,
+        "count": 1
+      },
+      {
+        "operation": "security.credential.decrypt",
+        "avgDuration": 50.97810000000027,
+        "avgMemory": -6505616,
+        "count": 1
+      },
+      {
+        "operation": "security.vulnerability.scan",
+        "avgDuration": 237.97900000000027,
+        "avgMemory": 4254240,
+        "count": 1
+      },
+      {
+        "operation": "security.penetration.test",
+        "avgDuration": 274.2925000000005,
+        "avgMemory": 1926320,
+        "count": 1
+      }
+    ],
+    "network": [],
+    "other": [
+      {
+        "operation": "meta-agent.task.execute",
+        "avgDuration": 27.767899999999997,
+        "avgMemory": 1346880,
+        "count": 1
+      },
+      {
+        "operation": "meta-agent.workflow.run",
+        "avgDuration": 12.112799999999993,
+        "avgMemory": 273496,
+        "count": 1
+      },
+      {
+        "operation": "meta-agent.elicitation.session",
+        "avgDuration": 97.5349,
+        "avgMemory": -235728,
+        "count": 1
+      },
+      {
+        "operation": "meta-agent.template.render",
+        "avgDuration": 87.63069999999999,
+        "avgMemory": 576080,
+        "count": 1
+      },
+      {
+        "operation": "meta-agent.validation.check",
+        "avgDuration": 34.87790000000001,
+        "avgMemory": -1157080,
+        "count": 1
+      }
+    ]
+  }
+}

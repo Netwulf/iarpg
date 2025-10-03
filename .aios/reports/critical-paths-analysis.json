@@ -1,0 +1,3666 @@
+{
+  "timestamp": "2025-08-01T04:10:16.437Z",
+  "analysis": {
+    "Meta-Agent Operations": {
+      "component.create": {
+        "simulated": true,
+        "category": "meta-agent",
+        "estimated": true
+      },
+      "component.modify": {
+        "simulated": true,
+        "category": "meta-agent",
+        "estimated": true
+      },
+      "task.execute": {
+        "simulated": true,
+        "category": "meta-agent",
+        "estimated": true
+      },
+      "workflow.run": {
+        "simulated": true,
+        "category": "meta-agent",
+        "estimated": true
+      },
+      "elicitation.session": {
+        "simulated": true,
+        "category": "meta-agent",
+        "estimated": true
+      },
+      "template.render": {
+        "simulated": true,
+        "category": "meta-agent",
+        "estimated": true
+      },
+      "validation.check": {
+        "simulated": true,
+        "category": "meta-agent",
+        "estimated": true
+      }
+    },
+    "Memory Layer Operations": {
+      "query.vector": {
+        "simulated": true,
+        "category": "memory",
+        "estimated": true
+      },
+      "query.semantic": {
+        "simulated": true,
+        "category": "memory",
+        "estimated": true
+      },
+      "index.build": {
+        "simulated": true,
+        "category": "memory",
+        "estimated": true
+      },
+      "index.update": {
+        "simulated": true,
+        "category": "memory",
+        "estimated": true
+      },
+      "document.store": {
+        "simulated": true,
+        "category": "memory",
+        "estimated": true
+      },
+      "document.retrieve": {
+        "simulated": true,
+        "category": "memory",
+        "estimated": true
+      },
+      "memory.consolidate": {
+        "simulated": true,
+        "category": "memory",
+        "estimated": true
+      }
+    },
+    "Installation Process": {
+      "wizard.initialize": {
+        "simulated": true,
+        "category": "installation",
+        "userFacing": true,
+        "estimated": true
+      },
+      "dependencies.install": {
+        "simulated": true,
+        "category": "installation",
+        "userFacing": true,
+        "estimated": true
+      },
+      "project.create": {
+        "simulated": true,
+        "category": "installation",
+        "userFacing": true,
+        "estimated": true
+      },
+      "templates.copy": {
+        "simulated": true,
+        "category": "installation",
+        "userFacing": true,
+        "estimated": true
+      },
+      "configuration.setup": {
+        "simulated": true,
+        "category": "installation",
+        "userFacing": true,
+        "estimated": true
+      },
+      "verification.run": {
+        "simulated": true,
+        "category": "installation",
+        "userFacing": true,
+        "estimated": true
+      },
+      "firstrun.demo": {
+        "simulated": true,
+        "category": "installation",
+        "userFacing": true,
+        "estimated": true
+      }
+    },
+    "Component Generation": {
+      "template.load": {
+        "simulated": true,
+        "category": "component-generation",
+        "estimated": true
+      },
+      "template.process": {
+        "simulated": true,
+        "category": "component-generation",
+        "estimated": true
+      },
+      "code.generate": {
+        "simulated": true,
+        "category": "component-generation",
+        "estimated": true
+      },
+      "file.write": {
+        "simulated": true,
+        "category": "component-generation",
+        "estimated": true
+      },
+      "validation.syntax": {
+        "simulated": true,
+        "category": "component-generation",
+        "estimated": true
+      },
+      "integration.test": {
+        "simulated": true,
+        "category": "component-generation",
+        "estimated": true
+      }
+    },
+    "File System Operations": {
+      "file.read.small": {
+        "simulated": true,
+        "category": "filesystem",
+        "estimated": true
+      },
+      "file.read.large": {
+        "simulated": true,
+        "category": "filesystem",
+        "estimated": true
+      },
+      "file.write.small": {
+        "simulated": true,
+        "category": "filesystem",
+        "estimated": true
+      },
+      "file.write.large": {
+        "simulated": true,
+        "category": "filesystem",
+        "estimated": true
+      },
+      "directory.scan": {
+        "simulated": true,
+        "category": "filesystem",
+        "estimated": true
+      },
+      "archive.extract": {
+        "simulated": true,
+        "category": "filesystem",
+        "estimated": true
+      },
+      "template.copy.bulk": {
+        "simulated": true,
+        "category": "filesystem",
+        "estimated": true
+      }
+    },
+    "Security Operations": {
+      "input.sanitize": {
+        "simulated": true,
+        "category": "security",
+        "sensitive": true,
+        "estimated": true
+      },
+      "auth.validate": {
+        "simulated": true,
+        "category": "security",
+        "sensitive": true,
+        "estimated": true
+      },
+      "credential.encrypt": {
+        "simulated": true,
+        "category": "security",
+        "sensitive": true,
+        "estimated": true
+      },
+      "credential.decrypt": {
+        "simulated": true,
+        "category": "security",
+        "sensitive": true,
+        "estimated": true
+      },
+      "vulnerability.scan": {
+        "simulated": true,
+        "category": "security",
+        "sensitive": true,
+        "estimated": true
+      },
+      "penetration.test": {
+        "simulated": true,
+        "category": "security",
+        "sensitive": true,
+        "estimated": true
+      }
+    }
+  },
+  "criticalPaths": [
+    {
+      "operation": "memory.index.build",
+      "avgDuration": 479.04369999999994,
+      "p95Duration": 479.04369999999994,
+      "avgMemory": 12719856,
+      "count": 1,
+      "severity": 90
+    },
+    {
+      "operation": "installation.dependencies.install",
+      "avgDuration": 487.67510000000016,
+      "p95Duration": 487.67510000000016,
+      "avgMemory": 13362024,
+      "count": 1,
+      "severity": 90
+    },
+    {
+      "operation": "filesystem.template.copy.bulk",
+      "avgDuration": 479.52540000000045,
+      "p95Duration": 479.52540000000045,
+      "avgMemory": 10197272,
+      "count": 1,
+      "severity": 90
+    },
+    {
+      "operation": "filesystem.file.read.large",
+      "avgDuration": 480.8512999999998,
+      "p95Duration": 480.8512999999998,
+      "avgMemory": -4847624,
+      "count": 1,
+      "severity": 70
+    },
+    {
+      "operation": "filesystem.file.write.large",
+      "avgDuration": 440.6381000000001,
+      "p95Duration": 440.6381000000001,
+      "avgMemory": -5525792,
+      "count": 1,
+      "severity": 70
+    },
+    {
+      "operation": "security.vulnerability.scan",
+      "avgDuration": 237.97900000000027,
+      "p95Duration": 237.97900000000027,
+      "avgMemory": 4254240,
+      "count": 1,
+      "severity": 65
+    },
+    {
+      "operation": "security.penetration.test",
+      "avgDuration": 274.2925000000005,
+      "p95Duration": 274.2925000000005,
+      "avgMemory": 1926320,
+      "count": 1,
+      "severity": 55
+    },
+    {
+      "operation": "memory.index.update",
+      "avgDuration": 146.44990000000007,
+      "p95Duration": 146.44990000000007,
+      "avgMemory": 14606272,
+      "count": 1,
+      "severity": 40
+    },
+    {
+      "operation": "memory.document.store",
+      "avgDuration": 93.22180000000003,
+      "p95Duration": 93.22180000000003,
+      "avgMemory": 17948240,
+      "count": 1,
+      "severity": 40
+    },
+    {
+      "operation": "installation.verification.run",
+      "avgDuration": 69.47360000000026,
+      "p95Duration": 69.47360000000026,
+      "avgMemory": 9547264,
+      "count": 1,
+      "severity": 40
+    },
+    {
+      "operation": "security.credential.encrypt",
+      "avgDuration": 88.37930000000006,
+      "p95Duration": 88.37930000000006,
+      "avgMemory": 8261664,
+      "count": 1,
+      "severity": 40
+    },
+    {
+      "operation": "component.validation.syntax",
+      "avgDuration": 6.8508999999999105,
+      "p95Duration": 6.8508999999999105,
+      "avgMemory": 5537408,
+      "count": 1,
+      "severity": 20
+    },
+    {
+      "operation": "filesystem.file.write.small",
+      "avgDuration": 7.65769999999975,
+      "p95Duration": 7.65769999999975,
+      "avgMemory": 6684064,
+      "count": 1,
+      "severity": 20
+    }
+  ],
+  "bottlenecks": [],
+  "optimizationOpportunities": [
+    {
+      "operation": "memory.query.vector",
+      "type": "io-optimization",
+      "potential": "medium",
+      "reason": "I/O operation that could benefit from batching or connection pooling",
+      "avgDuration": 46.03769999999997
+    },
+    {
+      "operation": "memory.query.semantic",
+      "type": "io-optimization",
+      "potential": "medium",
+      "reason": "I/O operation that could benefit from batching or connection pooling",
+      "avgDuration": 96.45570000000004
+    },
+    {
+      "operation": "memory.index.build",
+      "type": "memory",
+      "potential": "medium",
+      "reason": "High memory usage detected",
+      "avgMemory": 12719856
+    },
+    {
+      "operation": "memory.index.update",
+      "type": "memory",
+      "potential": "medium",
+      "reason": "High memory usage detected",
+      "avgMemory": 14606272
+    },
+    {
+      "operation": "memory.document.store",
+      "type": "memory",
+      "potential": "medium",
+      "reason": "High memory usage detected",
+      "avgMemory": 17948240
+    },
+    {
+      "operation": "memory.document.retrieve",
+      "type": "memory",
+      "potential": "medium",
+      "reason": "High memory usage detected",
+      "avgMemory": 4312960
+    },
+    {
+      "operation": "installation.dependencies.install",
+      "type": "memory",
+      "potential": "medium",
+      "reason": "High memory usage detected",
+      "avgMemory": 13362024
+    },
+    {
+      "operation": "installation.verification.run",
+      "type": "memory",
+      "potential": "medium",
+      "reason": "High memory usage detected",
+      "avgMemory": 9547264
+    },
+    {
+      "operation": "component.template.load",
+      "type": "memory",
+      "potential": "medium",
+      "reason": "High memory usage detected",
+      "avgMemory": 4615224
+    },
+    {
+      "operation": "component.template.process",
+      "type": "memory",
+      "potential": "medium",
+      "reason": "High memory usage detected",
+      "avgMemory": 2699632
+    },
+    {
+      "operation": "component.file.write",
+      "type": "io-optimization",
+      "potential": "medium",
+      "reason": "I/O operation that could benefit from batching or connection pooling",
+      "avgDuration": 2.196700000000419
+    },
+    {
+      "operation": "component.validation.syntax",
+      "type": "memory",
+      "potential": "medium",
+      "reason": "High memory usage detected",
+      "avgMemory": 5537408
+    },
+    {
+      "operation": "filesystem.file.read.small",
+      "type": "memory",
+      "potential": "medium",
+      "reason": "High memory usage detected",
+      "avgMemory": 3547512
+    },
+    {
+      "operation": "filesystem.file.read.small",
+      "type": "io-optimization",
+      "potential": "medium",
+      "reason": "I/O operation that could benefit from batching or connection pooling",
+      "avgDuration": 4.098199999999906
+    },
+    {
+      "operation": "filesystem.file.read.large",
+      "type": "io-optimization",
+      "potential": "medium",
+      "reason": "I/O operation that could benefit from batching or connection pooling",
+      "avgDuration": 480.8512999999998
+    },
+    {
+      "operation": "filesystem.file.write.small",
+      "type": "memory",
+      "potential": "medium",
+      "reason": "High memory usage detected",
+      "avgMemory": 6684064
+    },
+    {
+      "operation": "filesystem.file.write.small",
+      "type": "io-optimization",
+      "potential": "medium",
+      "reason": "I/O operation that could benefit from batching or connection pooling",
+      "avgDuration": 7.65769999999975
+    },
+    {
+      "operation": "filesystem.file.write.large",
+      "type": "io-optimization",
+      "potential": "medium",
+      "reason": "I/O operation that could benefit from batching or connection pooling",
+      "avgDuration": 440.6381000000001
+    },
+    {
+      "operation": "filesystem.directory.scan",
+      "type": "memory",
+      "potential": "medium",
+      "reason": "High memory usage detected",
+      "avgMemory": 4796864
+    },
+    {
+      "operation": "filesystem.directory.scan",
+      "type": "io-optimization",
+      "potential": "medium",
+      "reason": "I/O operation that could benefit from batching or connection pooling",
+      "avgDuration": 5.534299999999803
+    },
+    {
+      "operation": "filesystem.archive.extract",
+      "type": "io-optimization",
+      "potential": "medium",
+      "reason": "I/O operation that could benefit from batching or connection pooling",
+      "avgDuration": 4.62519999999995
+    },
+    {
+      "operation": "filesystem.template.copy.bulk",
+      "type": "memory",
+      "potential": "medium",
+      "reason": "High memory usage detected",
+      "avgMemory": 10197272
+    },
+    {
+      "operation": "filesystem.template.copy.bulk",
+      "type": "io-optimization",
+      "potential": "medium",
+      "reason": "I/O operation that could benefit from batching or connection pooling",
+      "avgDuration": 479.52540000000045
+    },
+    {
+      "operation": "security.credential.encrypt",
+      "type": "memory",
+      "potential": "medium",
+      "reason": "High memory usage detected",
+      "avgMemory": 8261664
+    },
+    {
+      "operation": "security.vulnerability.scan",
+      "type": "memory",
+      "potential": "medium",
+      "reason": "High memory usage detected",
+      "avgMemory": 4254240
+    }
+  ],
+  "recommendations": [
+    {
+      "priority": "high",
+      "operation": "memory.index.build",
+      "type": "performance",
+      "action": "Immediate optimization required",
+      "details": "Operation takes 479.04ms on average",
+      "impact": "High user experience impact"
+    },
+    {
+      "priority": "high",
+      "operation": "installation.dependencies.install",
+      "type": "performance",
+      "action": "Immediate optimization required",
+      "details": "Operation takes 487.68ms on average",
+      "impact": "High user experience impact"
+    },
+    {
+      "priority": "high",
+      "operation": "filesystem.template.copy.bulk",
+      "type": "performance",
+      "action": "Immediate optimization required",
+      "details": "Operation takes 479.53ms on average",
+      "impact": "High user experience impact"
+    },
+    {
+      "priority": "medium",
+      "type": "monitoring",
+      "action": "Implement continuous performance monitoring",
+      "details": "Set up alerts for performance regressions",
+      "impact": "Proactive performance management"
+    }
+  ],
+  "baseReport": {
+    "generatedAt": "2025-08-01T04:10:16.436Z",
+    "profileDuration": 4711.8951,
+    "systemSnapshot": {
+      "timestamp": 4747.0012,
+      "uptime": 4.7466652,
+      "memory": {
+        "process": {
+          "rss": 143175680,
+          "heapTotal": 94736384,
+          "heapUsed": 67850480,
+          "external": 1762196,
+          "arrayBuffers": 10475
+        },
+        "system": {
+          "free": 17009811456,
+          "total": 34125037568,
+          "usage": "50.15"
+        }
+      },
+      "cpu": {
+        "usage": {
+          "user": 453000,
+          "system": 0
+        },
+        "loadAverage": [
+          0,
+          0,
+          0
+        ],
+        "cores": 20
+      },
+      "activeTimers": 0,
+      "totalOperations": 40
+    },
+    "operationStats": {
+      "meta-agent.component.create": {
+        "operationName": "meta-agent.component.create",
+        "count": 1,
+        "duration": {
+          "min": 62.05899999999999,
+          "max": 62.05899999999999,
+          "avg": 62.05899999999999,
+          "median": 62.05899999999999,
+          "p95": 62.05899999999999,
+          "p99": 62.05899999999999
+        },
+        "memory": {
+          "avgHeapDelta": -115920,
+          "maxHeapDelta": -115920,
+          "minHeapDelta": -115920
+        },
+        "operations": [
+          {
+            "operationName": "meta-agent.component.create",
+            "profileId": "meta-agent.component.create_1754021411724_i6n6snbnd",
+            "duration": 62.05899999999999,
+            "startTime": 35.9729,
+            "endTime": 98.0319,
+            "memoryDelta": {
+              "rss": 2822144,
+              "heapUsed": -115920,
+              "heapTotal": 2621440,
+              "external": 40
+            },
+            "metadata": {
+              "category": "meta-agent",
+              "critical": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      "meta-agent.component.modify": {
+        "operationName": "meta-agent.component.modify",
+        "count": 1,
+        "duration": {
+          "min": 71.2858,
+          "max": 71.2858,
+          "avg": 71.2858,
+          "median": 71.2858,
+          "p95": 71.2858,
+          "p99": 71.2858
+        },
+        "memory": {
+          "avgHeapDelta": 500808,
+          "maxHeapDelta": 500808,
+          "minHeapDelta": 500808
+        },
+        "operations": [
+          {
+            "operationName": "meta-agent.component.modify",
+            "profileId": "meta-agent.component.modify_1754021411787_2ahrcg6cb",
+            "duration": 71.2858,
+            "startTime": 98.0967,
+            "endTime": 169.3825,
+            "memoryDelta": {
+              "rss": 110592,
+              "heapUsed": 500808,
+              "heapTotal": 0,
+              "external": 0
+            },
+            "metadata": {
+              "category": "meta-agent",
+              "critical": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      "meta-agent.task.execute": {
+        "operationName": "meta-agent.task.execute",
+        "count": 1,
+        "duration": {
+          "min": 27.767899999999997,
+          "max": 27.767899999999997,
+          "avg": 27.767899999999997,
+          "median": 27.767899999999997,
+          "p95": 27.767899999999997,
+          "p99": 27.767899999999997
+        },
+        "memory": {
+          "avgHeapDelta": 1346880,
+          "maxHeapDelta": 1346880,
+          "minHeapDelta": 1346880
+        },
+        "operations": [
+          {
+            "operationName": "meta-agent.task.execute",
+            "profileId": "meta-agent.task.execute_1754021411858_2d5afa4p9",
+            "duration": 27.767899999999997,
+            "startTime": 169.4416,
+            "endTime": 197.2095,
+            "memoryDelta": {
+              "rss": 114688,
+              "heapUsed": 1346880,
+              "heapTotal": 262144,
+              "external": 0
+            },
+            "metadata": {
+              "category": "meta-agent",
+              "critical": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      "meta-agent.workflow.run": {
+        "operationName": "meta-agent.workflow.run",
+        "count": 1,
+        "duration": {
+          "min": 12.112799999999993,
+          "max": 12.112799999999993,
+          "avg": 12.112799999999993,
+          "median": 12.112799999999993,
+          "p95": 12.112799999999993,
+          "p99": 12.112799999999993
+        },
+        "memory": {
+          "avgHeapDelta": 273496,
+          "maxHeapDelta": 273496,
+          "minHeapDelta": 273496
+        },
+        "operations": [
+          {
+            "operationName": "meta-agent.workflow.run",
+            "profileId": "meta-agent.workflow.run_1754021411886_m5bhqj1wy",
+            "duration": 12.112799999999993,
+            "startTime": 197.2744,
+            "endTime": 209.3872,
+            "memoryDelta": {
+              "rss": 110592,
+              "heapUsed": 273496,
+              "heapTotal": 0,
+              "external": 0
+            },
+            "metadata": {
+              "category": "meta-agent",
+              "critical": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      "meta-agent.elicitation.session": {
+        "operationName": "meta-agent.elicitation.session",
+        "count": 1,
+        "duration": {
+          "min": 97.5349,
+          "max": 97.5349,
+          "avg": 97.5349,
+          "median": 97.5349,
+          "p95": 97.5349,
+          "p99": 97.5349
+        },
+        "memory": {
+          "avgHeapDelta": -235728,
+          "maxHeapDelta": -235728,
+          "minHeapDelta": -235728
+        },
+        "operations": [
+          {
+            "operationName": "meta-agent.elicitation.session",
+            "profileId": "meta-agent.elicitation.session_1754021411898_kwujvsiae",
+            "duration": 97.5349,
+            "startTime": 209.4389,
+            "endTime": 306.9738,
+            "memoryDelta": {
+              "rss": 118784,
+              "heapUsed": -235728,
+              "heapTotal": 262144,
+              "external": 0
+            },
+            "metadata": {
+              "category": "meta-agent",
+              "critical": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      "meta-agent.template.render": {
+        "operationName": "meta-agent.template.render",
+        "count": 1,
+        "duration": {
+          "min": 87.63069999999999,
+          "max": 87.63069999999999,
+          "avg": 87.63069999999999,
+          "median": 87.63069999999999,
+          "p95": 87.63069999999999,
+          "p99": 87.63069999999999
+        },
+        "memory": {
+          "avgHeapDelta": 576080,
+          "maxHeapDelta": 576080,
+          "minHeapDelta": 576080
+        },
+        "operations": [
+          {
+            "operationName": "meta-agent.template.render",
+            "profileId": "meta-agent.template.render_1754021411996_tnizx2vxl",
+            "duration": 87.63069999999999,
+            "startTime": 307.0523,
+            "endTime": 394.683,
+            "memoryDelta": {
+              "rss": 106496,
+              "heapUsed": 576080,
+              "heapTotal": 0,
+              "external": 0
+            },
+            "metadata": {
+              "category": "meta-agent",
+              "critical": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      "meta-agent.validation.check": {
+        "operationName": "meta-agent.validation.check",
+        "count": 1,
+        "duration": {
+          "min": 34.87790000000001,
+          "max": 34.87790000000001,
+          "avg": 34.87790000000001,
+          "median": 34.87790000000001,
+          "p95": 34.87790000000001,
+          "p99": 34.87790000000001
+        },
+        "memory": {
+          "avgHeapDelta": -1157080,
+          "maxHeapDelta": -1157080,
+          "minHeapDelta": -1157080
+        },
+        "operations": [
+          {
+            "operationName": "meta-agent.validation.check",
+            "profileId": "meta-agent.validation.check_1754021412083_15b0f6h08",
+            "duration": 34.87790000000001,
+            "startTime": 394.7382,
+            "endTime": 429.6161,
+            "memoryDelta": {
+              "rss": 135168,
+              "heapUsed": -1157080,
+              "heapTotal": 262144,
+              "external": 0
+            },
+            "metadata": {
+              "category": "meta-agent",
+              "critical": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      "memory.query.vector": {
+        "operationName": "memory.query.vector",
+        "count": 1,
+        "duration": {
+          "min": 46.03769999999997,
+          "max": 46.03769999999997,
+          "avg": 46.03769999999997,
+          "median": 46.03769999999997,
+          "p95": 46.03769999999997,
+          "p99": 46.03769999999997
+        },
+        "memory": {
+          "avgHeapDelta": 70704,
+          "maxHeapDelta": 70704,
+          "minHeapDelta": 70704
+        },
+        "operations": [
+          {
+            "operationName": "memory.query.vector",
+            "profileId": "memory.query.vector_1754021412118_7axyp2eh5",
+            "duration": 46.03769999999997,
+            "startTime": 429.9048,
+            "endTime": 475.9425,
+            "memoryDelta": {
+              "rss": 126976,
+              "heapUsed": 70704,
+              "heapTotal": 0,
+              "external": 0
+            },
+            "metadata": {
+              "category": "memory",
+              "critical": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      "memory.query.semantic": {
+        "operationName": "memory.query.semantic",
+        "count": 1,
+        "duration": {
+          "min": 96.45570000000004,
+          "max": 96.45570000000004,
+          "avg": 96.45570000000004,
+          "median": 96.45570000000004,
+          "p95": 96.45570000000004,
+          "p99": 96.45570000000004
+        },
+        "memory": {
+          "avgHeapDelta": -254432,
+          "maxHeapDelta": -254432,
+          "minHeapDelta": -254432
+        },
+        "operations": [
+          {
+            "operationName": "memory.query.semantic",
+            "profileId": "memory.query.semantic_1754021412164_ayb2rhbsj",
+            "duration": 96.45570000000004,
+            "startTime": 475.9976,
+            "endTime": 572.4533,
+            "memoryDelta": {
+              "rss": 118784,
+              "heapUsed": -254432,
+              "heapTotal": 262144,
+              "external": 0
+            },
+            "metadata": {
+              "category": "memory",
+              "critical": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      "memory.index.build": {
+        "operationName": "memory.index.build",
+        "count": 1,
+        "duration": {
+          "min": 479.04369999999994,
+          "max": 479.04369999999994,
+          "avg": 479.04369999999994,
+          "median": 479.04369999999994,
+          "p95": 479.04369999999994,
+          "p99": 479.04369999999994
+        },
+        "memory": {
+          "avgHeapDelta": 12719856,
+          "maxHeapDelta": 12719856,
+          "minHeapDelta": 12719856
+        },
+        "operations": [
+          {
+            "operationName": "memory.index.build",
+            "profileId": "memory.index.build_1754021412261_m4tikpqkd",
+            "duration": 479.04369999999994,
+            "startTime": 572.5732,
+            "endTime": 1051.6169,
+            "memoryDelta": {
+              "rss": 14823424,
+              "heapUsed": 12719856,
+              "heapTotal": 14688256,
+              "external": -40
+            },
+            "metadata": {
+              "category": "memory",
+              "critical": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      "memory.index.update": {
+        "operationName": "memory.index.update",
+        "count": 1,
+        "duration": {
+          "min": 146.44990000000007,
+          "max": 146.44990000000007,
+          "avg": 146.44990000000007,
+          "median": 146.44990000000007,
+          "p95": 146.44990000000007,
+          "p99": 146.44990000000007
+        },
+        "memory": {
+          "avgHeapDelta": 14606272,
+          "maxHeapDelta": 14606272,
+          "minHeapDelta": 14606272
+        },
+        "operations": [
+          {
+            "operationName": "memory.index.update",
+            "profileId": "memory.index.update_1754021412740_u869ckcl3",
+            "duration": 146.44990000000007,
+            "startTime": 1051.684,
+            "endTime": 1198.1339,
+            "memoryDelta": {
+              "rss": 18911232,
+              "heapUsed": 14606272,
+              "heapTotal": 18882560,
+              "external": 0
+            },
+            "metadata": {
+              "category": "memory",
+              "critical": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      "memory.document.store": {
+        "operationName": "memory.document.store",
+        "count": 1,
+        "duration": {
+          "min": 93.22180000000003,
+          "max": 93.22180000000003,
+          "avg": 93.22180000000003,
+          "median": 93.22180000000003,
+          "p95": 93.22180000000003,
+          "p99": 93.22180000000003
+        },
+        "memory": {
+          "avgHeapDelta": 17948240,
+          "maxHeapDelta": 17948240,
+          "minHeapDelta": 17948240
+        },
+        "operations": [
+          {
+            "operationName": "memory.document.store",
+            "profileId": "memory.document.store_1754021412887_jj7upbvyq",
+            "duration": 93.22180000000003,
+            "startTime": 1198.1895,
+            "endTime": 1291.4113,
+            "memoryDelta": {
+              "rss": 27320320,
+              "heapUsed": 17948240,
+              "heapTotal": 27271168,
+              "external": 0
+            },
+            "metadata": {
+              "category": "memory",
+              "critical": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      "memory.document.retrieve": {
+        "operationName": "memory.document.retrieve",
+        "count": 1,
+        "duration": {
+          "min": 75.39359999999988,
+          "max": 75.39359999999988,
+          "avg": 75.39359999999988,
+          "median": 75.39359999999988,
+          "p95": 75.39359999999988,
+          "p99": 75.39359999999988
+        },
+        "memory": {
+          "avgHeapDelta": 4312960,
+          "maxHeapDelta": 4312960,
+          "minHeapDelta": 4312960
+        },
+        "operations": [
+          {
+            "operationName": "memory.document.retrieve",
+            "profileId": "memory.document.retrieve_1754021412980_rdo5bp3x3",
+            "duration": 75.39359999999988,
+            "startTime": 1291.4681,
+            "endTime": 1366.8617,
+            "memoryDelta": {
+              "rss": 10493952,
+              "heapUsed": 4312960,
+              "heapTotal": 10493952,
+              "external": 0
+            },
+            "metadata": {
+              "category": "memory",
+              "critical": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      "memory.memory.consolidate": {
+        "operationName": "memory.memory.consolidate",
+        "count": 1,
+        "duration": {
+          "min": 92.2174,
+          "max": 92.2174,
+          "avg": 92.2174,
+          "median": 92.2174,
+          "p95": 92.2174,
+          "p99": 92.2174
+        },
+        "memory": {
+          "avgHeapDelta": 2565008,
+          "maxHeapDelta": 2565008,
+          "minHeapDelta": 2565008
+        },
+        "operations": [
+          {
+            "operationName": "memory.memory.consolidate",
+            "profileId": "memory.memory.consolidate_1754021413055_bzg5aisuf",
+            "duration": 92.2174,
+            "startTime": 1366.9279,
+            "endTime": 1459.1453,
+            "memoryDelta": {
+              "rss": 10498048,
+              "heapUsed": 2565008,
+              "heapTotal": 10493952,
+              "external": 0
+            },
+            "metadata": {
+              "category": "memory",
+              "critical": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      "installation.wizard.initialize": {
+        "operationName": "installation.wizard.initialize",
+        "count": 1,
+        "duration": {
+          "min": 60.21469999999999,
+          "max": 60.21469999999999,
+          "avg": 60.21469999999999,
+          "median": 60.21469999999999,
+          "p95": 60.21469999999999,
+          "p99": 60.21469999999999
+        },
+        "memory": {
+          "avgHeapDelta": 747752,
+          "maxHeapDelta": 747752,
+          "minHeapDelta": 747752
+        },
+        "operations": [
+          {
+            "operationName": "installation.wizard.initialize",
+            "profileId": "installation.wizard.initialize_1754021413148_n9k2vay79",
+            "duration": 60.21469999999999,
+            "startTime": 1459.4681,
+            "endTime": 1519.6828,
+            "memoryDelta": {
+              "rss": 110592,
+              "heapUsed": 747752,
+              "heapTotal": 262144,
+              "external": 0
+            },
+            "metadata": {
+              "category": "installation",
+              "critical": true,
+              "userFacing": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      "installation.dependencies.install": {
+        "operationName": "installation.dependencies.install",
+        "count": 1,
+        "duration": {
+          "min": 487.67510000000016,
+          "max": 487.67510000000016,
+          "avg": 487.67510000000016,
+          "median": 487.67510000000016,
+          "p95": 487.67510000000016,
+          "p99": 487.67510000000016
+        },
+        "memory": {
+          "avgHeapDelta": 13362024,
+          "maxHeapDelta": 13362024,
+          "minHeapDelta": 13362024
+        },
+        "operations": [
+          {
+            "operationName": "installation.dependencies.install",
+            "profileId": "installation.dependencies.install_1754021413208_npku8e5w7",
+            "duration": 487.67510000000016,
+            "startTime": 1519.7332,
+            "endTime": 2007.4083,
+            "memoryDelta": {
+              "rss": 102400,
+              "heapUsed": 13362024,
+              "heapTotal": 0,
+              "external": 0
+            },
+            "metadata": {
+              "category": "installation",
+              "critical": true,
+              "userFacing": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      "installation.project.create": {
+        "operationName": "installation.project.create",
+        "count": 1,
+        "duration": {
+          "min": 84.57719999999995,
+          "max": 84.57719999999995,
+          "avg": 84.57719999999995,
+          "median": 84.57719999999995,
+          "p95": 84.57719999999995,
+          "p99": 84.57719999999995
+        },
+        "memory": {
+          "avgHeapDelta": -10650832,
+          "maxHeapDelta": -10650832,
+          "minHeapDelta": -10650832
+        },
+        "operations": [
+          {
+            "operationName": "installation.project.create",
+            "profileId": "installation.project.create_1754021413696_ewn9j5ydx",
+            "duration": 84.57719999999995,
+            "startTime": 2007.4711,
+            "endTime": 2092.0483,
+            "memoryDelta": {
+              "rss": 0,
+              "heapUsed": -10650832,
+              "heapTotal": 0,
+              "external": 0
+            },
+            "metadata": {
+              "category": "installation",
+              "critical": true,
+              "userFacing": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      "installation.templates.copy": {
+        "operationName": "installation.templates.copy",
+        "count": 1,
+        "duration": {
+          "min": 38.43989999999985,
+          "max": 38.43989999999985,
+          "avg": 38.43989999999985,
+          "median": 38.43989999999985,
+          "p95": 38.43989999999985,
+          "p99": 38.43989999999985
+        },
+        "memory": {
+          "avgHeapDelta": -8832,
+          "maxHeapDelta": -8832,
+          "minHeapDelta": -8832
+        },
+        "operations": [
+          {
+            "operationName": "installation.templates.copy",
+            "profileId": "installation.templates.copy_1754021413781_p6g0t8wi4",
+            "duration": 38.43989999999985,
+            "startTime": 2092.1044,
+            "endTime": 2130.5443,
+            "memoryDelta": {
+              "rss": 110592,
+              "heapUsed": -8832,
+              "heapTotal": 262144,
+              "external": 0
+            },
+            "metadata": {
+              "category": "installation",
+              "critical": true,
+              "userFacing": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      "installation.configuration.setup": {
+        "operationName": "installation.configuration.setup",
+        "count": 1,
+        "duration": {
+          "min": 95.55050000000028,
+          "max": 95.55050000000028,
+          "avg": 95.55050000000028,
+          "median": 95.55050000000028,
+          "p95": 95.55050000000028,
+          "p99": 95.55050000000028
+        },
+        "memory": {
+          "avgHeapDelta": -2324640,
+          "maxHeapDelta": -2324640,
+          "minHeapDelta": -2324640
+        },
+        "operations": [
+          {
+            "operationName": "installation.configuration.setup",
+            "profileId": "installation.configuration.setup_1754021413819_hiizioipm",
+            "duration": 95.55050000000028,
+            "startTime": 2130.6112,
+            "endTime": 2226.1617,
+            "memoryDelta": {
+              "rss": 102400,
+              "heapUsed": -2324640,
+              "heapTotal": 0,
+              "external": 0
+            },
+            "metadata": {
+              "category": "installation",
+              "critical": true,
+              "userFacing": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      "installation.verification.run": {
+        "operationName": "installation.verification.run",
+        "count": 1,
+        "duration": {
+          "min": 69.47360000000026,
+          "max": 69.47360000000026,
+          "avg": 69.47360000000026,
+          "median": 69.47360000000026,
+          "p95": 69.47360000000026,
+          "p99": 69.47360000000026
+        },
+        "memory": {
+          "avgHeapDelta": 9547264,
+          "maxHeapDelta": 9547264,
+          "minHeapDelta": 9547264
+        },
+        "operations": [
+          {
+            "operationName": "installation.verification.run",
+            "profileId": "installation.verification.run_1754021413915_t66d13hq0",
+            "duration": 69.47360000000026,
+            "startTime": 2226.2295,
+            "endTime": 2295.7031,
+            "memoryDelta": {
+              "rss": 110592,
+              "heapUsed": 9547264,
+              "heapTotal": 262144,
+              "external": 0
+            },
+            "metadata": {
+              "category": "installation",
+              "critical": true,
+              "userFacing": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      "installation.firstrun.demo": {
+        "operationName": "installation.firstrun.demo",
+        "count": 1,
+        "duration": {
+          "min": 93.24450000000024,
+          "max": 93.24450000000024,
+          "avg": 93.24450000000024,
+          "median": 93.24450000000024,
+          "p95": 93.24450000000024,
+          "p99": 93.24450000000024
+        },
+        "memory": {
+          "avgHeapDelta": -3672496,
+          "maxHeapDelta": -3672496,
+          "minHeapDelta": -3672496
+        },
+        "operations": [
+          {
+            "operationName": "installation.firstrun.demo",
+            "profileId": "installation.firstrun.demo_1754021413984_zsx33dwt1",
+            "duration": 93.24450000000024,
+            "startTime": 2295.77,
+            "endTime": 2389.0145,
+            "memoryDelta": {
+              "rss": 102400,
+              "heapUsed": -3672496,
+              "heapTotal": 0,
+              "external": 0
+            },
+            "metadata": {
+              "category": "installation",
+              "critical": true,
+              "userFacing": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      "component.template.load": {
+        "operationName": "component.template.load",
+        "count": 1,
+        "duration": {
+          "min": 5.291500000000269,
+          "max": 5.291500000000269,
+          "avg": 5.291500000000269,
+          "median": 5.291500000000269,
+          "p95": 5.291500000000269,
+          "p99": 5.291500000000269
+        },
+        "memory": {
+          "avgHeapDelta": 4615224,
+          "maxHeapDelta": 4615224,
+          "minHeapDelta": 4615224
+        },
+        "operations": [
+          {
+            "operationName": "component.template.load",
+            "profileId": "component.template.load_1754021414078_00lmqq01u",
+            "duration": 5.291500000000269,
+            "startTime": 2389.47,
+            "endTime": 2394.7615,
+            "memoryDelta": {
+              "rss": 0,
+              "heapUsed": 4615224,
+              "heapTotal": 0,
+              "external": 0
+            },
+            "metadata": {
+              "category": "component-generation",
+              "critical": true,
+              "userFacing": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      "component.template.process": {
+        "operationName": "component.template.process",
+        "count": 1,
+        "duration": {
+          "min": 3.0273999999999432,
+          "max": 3.0273999999999432,
+          "avg": 3.0273999999999432,
+          "median": 3.0273999999999432,
+          "p95": 3.0273999999999432,
+          "p99": 3.0273999999999432
+        },
+        "memory": {
+          "avgHeapDelta": 2699632,
+          "maxHeapDelta": 2699632,
+          "minHeapDelta": 2699632
+        },
+        "operations": [
+          {
+            "operationName": "component.template.process",
+            "profileId": "component.template.process_1754021414083_go553gss3",
+            "duration": 3.0273999999999432,
+            "startTime": 2394.7955,
+            "endTime": 2397.8229,
+            "memoryDelta": {
+              "rss": 0,
+              "heapUsed": 2699632,
+              "heapTotal": 0,
+              "external": 0
+            },
+            "metadata": {
+              "category": "component-generation",
+              "critical": true,
+              "userFacing": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      "component.code.generate": {
+        "operationName": "component.code.generate",
+        "count": 1,
+        "duration": {
+          "min": 199.23649999999998,
+          "max": 199.23649999999998,
+          "avg": 199.23649999999998,
+          "median": 199.23649999999998,
+          "p95": 199.23649999999998,
+          "p99": 199.23649999999998
+        },
+        "memory": {
+          "avgHeapDelta": -12539984,
+          "maxHeapDelta": -12539984,
+          "minHeapDelta": -12539984
+        },
+        "operations": [
+          {
+            "operationName": "component.code.generate",
+            "profileId": "component.code.generate_1754021414086_bp5yclri6",
+            "duration": 199.23649999999998,
+            "startTime": 2397.8507,
+            "endTime": 2597.0872,
+            "memoryDelta": {
+              "rss": 102400,
+              "heapUsed": -12539984,
+              "heapTotal": 0,
+              "external": 0
+            },
+            "metadata": {
+              "category": "component-generation",
+              "critical": true,
+              "userFacing": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      "component.file.write": {
+        "operationName": "component.file.write",
+        "count": 1,
+        "duration": {
+          "min": 2.196700000000419,
+          "max": 2.196700000000419,
+          "avg": 2.196700000000419,
+          "median": 2.196700000000419,
+          "p95": 2.196700000000419,
+          "p99": 2.196700000000419
+        },
+        "memory": {
+          "avgHeapDelta": 1982008,
+          "maxHeapDelta": 1982008,
+          "minHeapDelta": 1982008
+        },
+        "operations": [
+          {
+            "operationName": "component.file.write",
+            "profileId": "component.file.write_1754021414286_r39mrbvv3",
+            "duration": 2.196700000000419,
+            "startTime": 2597.1512,
+            "endTime": 2599.3479,
+            "memoryDelta": {
+              "rss": 0,
+              "heapUsed": 1982008,
+              "heapTotal": 0,
+              "external": 0
+            },
+            "metadata": {
+              "category": "component-generation",
+              "critical": true,
+              "userFacing": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      "component.validation.syntax": {
+        "operationName": "component.validation.syntax",
+        "count": 1,
+        "duration": {
+          "min": 6.8508999999999105,
+          "max": 6.8508999999999105,
+          "avg": 6.8508999999999105,
+          "median": 6.8508999999999105,
+          "p95": 6.8508999999999105,
+          "p99": 6.8508999999999105
+        },
+        "memory": {
+          "avgHeapDelta": 5537408,
+          "maxHeapDelta": 5537408,
+          "minHeapDelta": 5537408
+        },
+        "operations": [
+          {
+            "operationName": "component.validation.syntax",
+            "profileId": "component.validation.syntax_1754021414288_bmkwn3efo",
+            "duration": 6.8508999999999105,
+            "startTime": 2599.362,
+            "endTime": 2606.2129,
+            "memoryDelta": {
+              "rss": 0,
+              "heapUsed": 5537408,
+              "heapTotal": 0,
+              "external": 0
+            },
+            "metadata": {
+              "category": "component-generation",
+              "critical": true,
+              "userFacing": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      "component.integration.test": {
+        "operationName": "component.integration.test",
+        "count": 1,
+        "duration": {
+          "min": 1.279399999999896,
+          "max": 1.279399999999896,
+          "avg": 1.279399999999896,
+          "median": 1.279399999999896,
+          "p95": 1.279399999999896,
+          "p99": 1.279399999999896
+        },
+        "memory": {
+          "avgHeapDelta": 1177472,
+          "maxHeapDelta": 1177472,
+          "minHeapDelta": 1177472
+        },
+        "operations": [
+          {
+            "operationName": "component.integration.test",
+            "profileId": "component.integration.test_1754021414295_6c0y8xgvn",
+            "duration": 1.279399999999896,
+            "startTime": 2606.2554,
+            "endTime": 2607.5348,
+            "memoryDelta": {
+              "rss": 0,
+              "heapUsed": 1177472,
+              "heapTotal": 0,
+              "external": 0
+            },
+            "metadata": {
+              "category": "component-generation",
+              "critical": true,
+              "userFacing": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      "filesystem.file.read.small": {
+        "operationName": "filesystem.file.read.small",
+        "count": 1,
+        "duration": {
+          "min": 4.098199999999906,
+          "max": 4.098199999999906,
+          "avg": 4.098199999999906,
+          "median": 4.098199999999906,
+          "p95": 4.098199999999906,
+          "p99": 4.098199999999906
+        },
+        "memory": {
+          "avgHeapDelta": 3547512,
+          "maxHeapDelta": 3547512,
+          "minHeapDelta": 3547512
+        },
+        "operations": [
+          {
+            "operationName": "filesystem.file.read.small",
+            "profileId": "filesystem.file.read.small_1754021414296_blssle4zm",
+            "duration": 4.098199999999906,
+            "startTime": 2607.7559,
+            "endTime": 2611.8541,
+            "memoryDelta": {
+              "rss": 0,
+              "heapUsed": 3547512,
+              "heapTotal": 0,
+              "external": 0
+            },
+            "metadata": {
+              "category": "filesystem",
+              "critical": false,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      "filesystem.file.read.large": {
+        "operationName": "filesystem.file.read.large",
+        "count": 1,
+        "duration": {
+          "min": 480.8512999999998,
+          "max": 480.8512999999998,
+          "avg": 480.8512999999998,
+          "median": 480.8512999999998,
+          "p95": 480.8512999999998,
+          "p99": 480.8512999999998
+        },
+        "memory": {
+          "avgHeapDelta": -4847624,
+          "maxHeapDelta": -4847624,
+          "minHeapDelta": -4847624
+        },
+        "operations": [
+          {
+            "operationName": "filesystem.file.read.large",
+            "profileId": "filesystem.file.read.large_1754021414300_3ionr5ibz",
+            "duration": 480.8512999999998,
+            "startTime": 2611.8885,
+            "endTime": 3092.7398,
+            "memoryDelta": {
+              "rss": 0,
+              "heapUsed": -4847624,
+              "heapTotal": 0,
+              "external": 0
+            },
+            "metadata": {
+              "category": "filesystem",
+              "critical": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      "filesystem.file.write.small": {
+        "operationName": "filesystem.file.write.small",
+        "count": 1,
+        "duration": {
+          "min": 7.65769999999975,
+          "max": 7.65769999999975,
+          "avg": 7.65769999999975,
+          "median": 7.65769999999975,
+          "p95": 7.65769999999975,
+          "p99": 7.65769999999975
+        },
+        "memory": {
+          "avgHeapDelta": 6684064,
+          "maxHeapDelta": 6684064,
+          "minHeapDelta": 6684064
+        },
+        "operations": [
+          {
+            "operationName": "filesystem.file.write.small",
+            "profileId": "filesystem.file.write.small_1754021414781_vb5t9waq4",
+            "duration": 7.65769999999975,
+            "startTime": 3092.7921,
+            "endTime": 3100.4498,
+            "memoryDelta": {
+              "rss": 0,
+              "heapUsed": 6684064,
+              "heapTotal": 0,
+              "external": 0
+            },
+            "metadata": {
+              "category": "filesystem",
+              "critical": false,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      "filesystem.file.write.large": {
+        "operationName": "filesystem.file.write.large",
+        "count": 1,
+        "duration": {
+          "min": 440.6381000000001,
+          "max": 440.6381000000001,
+          "avg": 440.6381000000001,
+          "median": 440.6381000000001,
+          "p95": 440.6381000000001,
+          "p99": 440.6381000000001
+        },
+        "memory": {
+          "avgHeapDelta": -5525792,
+          "maxHeapDelta": -5525792,
+          "minHeapDelta": -5525792
+        },
+        "operations": [
+          {
+            "operationName": "filesystem.file.write.large",
+            "profileId": "filesystem.file.write.large_1754021414789_o5mfb68l8",
+            "duration": 440.6381000000001,
+            "startTime": 3100.5015,
+            "endTime": 3541.1396,
+            "memoryDelta": {
+              "rss": 0,
+              "heapUsed": -5525792,
+              "heapTotal": 0,
+              "external": 0
+            },
+            "metadata": {
+              "category": "filesystem",
+              "critical": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      "filesystem.directory.scan": {
+        "operationName": "filesystem.directory.scan",
+        "count": 1,
+        "duration": {
+          "min": 5.534299999999803,
+          "max": 5.534299999999803,
+          "avg": 5.534299999999803,
+          "median": 5.534299999999803,
+          "p95": 5.534299999999803,
+          "p99": 5.534299999999803
+        },
+        "memory": {
+          "avgHeapDelta": 4796864,
+          "maxHeapDelta": 4796864,
+          "minHeapDelta": 4796864
+        },
+        "operations": [
+          {
+            "operationName": "filesystem.directory.scan",
+            "profileId": "filesystem.directory.scan_1754021415230_wnhc6bhm9",
+            "duration": 5.534299999999803,
+            "startTime": 3541.2022,
+            "endTime": 3546.7365,
+            "memoryDelta": {
+              "rss": 0,
+              "heapUsed": 4796864,
+              "heapTotal": 0,
+              "external": 0
+            },
+            "metadata": {
+              "category": "filesystem",
+              "critical": false,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      "filesystem.archive.extract": {
+        "operationName": "filesystem.archive.extract",
+        "count": 1,
+        "duration": {
+          "min": 4.62519999999995,
+          "max": 4.62519999999995,
+          "avg": 4.62519999999995,
+          "median": 4.62519999999995,
+          "p95": 4.62519999999995,
+          "p99": 4.62519999999995
+        },
+        "memory": {
+          "avgHeapDelta": -12479472,
+          "maxHeapDelta": -12479472,
+          "minHeapDelta": -12479472
+        },
+        "operations": [
+          {
+            "operationName": "filesystem.archive.extract",
+            "profileId": "filesystem.archive.extract_1754021415235_jnici8ph3",
+            "duration": 4.62519999999995,
+            "startTime": 3546.7707,
+            "endTime": 3551.3959,
+            "memoryDelta": {
+              "rss": 0,
+              "heapUsed": -12479472,
+              "heapTotal": 0,
+              "external": 0
+            },
+            "metadata": {
+              "category": "filesystem",
+              "critical": false,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      "filesystem.template.copy.bulk": {
+        "operationName": "filesystem.template.copy.bulk",
+        "count": 1,
+        "duration": {
+          "min": 479.52540000000045,
+          "max": 479.52540000000045,
+          "avg": 479.52540000000045,
+          "median": 479.52540000000045,
+          "p95": 479.52540000000045,
+          "p99": 479.52540000000045
+        },
+        "memory": {
+          "avgHeapDelta": 10197272,
+          "maxHeapDelta": 10197272,
+          "minHeapDelta": 10197272
+        },
+        "operations": [
+          {
+            "operationName": "filesystem.template.copy.bulk",
+            "profileId": "filesystem.template.copy.bulk_1754021415240_05rr25w6n",
+            "duration": 479.52540000000045,
+            "startTime": 3551.4248,
+            "endTime": 4030.9502,
+            "memoryDelta": {
+              "rss": 110592,
+              "heapUsed": 10197272,
+              "heapTotal": 262144,
+              "external": 0
+            },
+            "metadata": {
+              "category": "filesystem",
+              "critical": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      "security.input.sanitize": {
+        "operationName": "security.input.sanitize",
+        "count": 1,
+        "duration": {
+          "min": 23.80490000000009,
+          "max": 23.80490000000009,
+          "avg": 23.80490000000009,
+          "median": 23.80490000000009,
+          "p95": 23.80490000000009,
+          "p99": 23.80490000000009
+        },
+        "memory": {
+          "avgHeapDelta": -12973400,
+          "maxHeapDelta": -12973400,
+          "minHeapDelta": -12973400
+        },
+        "operations": [
+          {
+            "operationName": "security.input.sanitize",
+            "profileId": "security.input.sanitize_1754021415720_tu0c6yezv",
+            "duration": 23.80490000000009,
+            "startTime": 4031.2046,
+            "endTime": 4055.0095,
+            "memoryDelta": {
+              "rss": 155648,
+              "heapUsed": -12973400,
+              "heapTotal": 0,
+              "external": 0
+            },
+            "metadata": {
+              "category": "security",
+              "critical": true,
+              "sensitive": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      "security.auth.validate": {
+        "operationName": "security.auth.validate",
+        "count": 1,
+        "duration": {
+          "min": 39.75540000000001,
+          "max": 39.75540000000001,
+          "avg": 39.75540000000001,
+          "median": 39.75540000000001,
+          "p95": 39.75540000000001,
+          "p99": 39.75540000000001
+        },
+        "memory": {
+          "avgHeapDelta": 1103776,
+          "maxHeapDelta": 1103776,
+          "minHeapDelta": 1103776
+        },
+        "operations": [
+          {
+            "operationName": "security.auth.validate",
+            "profileId": "security.auth.validate_1754021415744_lv75nzjbh",
+            "duration": 39.75540000000001,
+            "startTime": 4055.069,
+            "endTime": 4094.8244,
+            "memoryDelta": {
+              "rss": 110592,
+              "heapUsed": 1103776,
+              "heapTotal": 262144,
+              "external": 0
+            },
+            "metadata": {
+              "category": "security",
+              "critical": true,
+              "sensitive": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      "security.credential.encrypt": {
+        "operationName": "security.credential.encrypt",
+        "count": 1,
+        "duration": {
+          "min": 88.37930000000006,
+          "max": 88.37930000000006,
+          "avg": 88.37930000000006,
+          "median": 88.37930000000006,
+          "p95": 88.37930000000006,
+          "p99": 88.37930000000006
+        },
+        "memory": {
+          "avgHeapDelta": 8261664,
+          "maxHeapDelta": 8261664,
+          "minHeapDelta": 8261664
+        },
+        "operations": [
+          {
+            "operationName": "security.credential.encrypt",
+            "profileId": "security.credential.encrypt_1754021415783_9yq09hsmj",
+            "duration": 88.37930000000006,
+            "startTime": 4094.8725,
+            "endTime": 4183.2518,
+            "memoryDelta": {
+              "rss": 102400,
+              "heapUsed": 8261664,
+              "heapTotal": 0,
+              "external": 0
+            },
+            "metadata": {
+              "category": "security",
+              "critical": true,
+              "sensitive": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      "security.credential.decrypt": {
+        "operationName": "security.credential.decrypt",
+        "count": 1,
+        "duration": {
+          "min": 50.97810000000027,
+          "max": 50.97810000000027,
+          "avg": 50.97810000000027,
+          "median": 50.97810000000027,
+          "p95": 50.97810000000027,
+          "p99": 50.97810000000027
+        },
+        "memory": {
+          "avgHeapDelta": -6505616,
+          "maxHeapDelta": -6505616,
+          "minHeapDelta": -6505616
+        },
+        "operations": [
+          {
+            "operationName": "security.credential.decrypt",
+            "profileId": "security.credential.decrypt_1754021415872_b5yo7crb0",
+            "duration": 50.97810000000027,
+            "startTime": 4183.3051,
+            "endTime": 4234.2832,
+            "memoryDelta": {
+              "rss": 0,
+              "heapUsed": -6505616,
+              "heapTotal": 0,
+              "external": 0
+            },
+            "metadata": {
+              "category": "security",
+              "critical": true,
+              "sensitive": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      "security.vulnerability.scan": {
+        "operationName": "security.vulnerability.scan",
+        "count": 1,
+        "duration": {
+          "min": 237.97900000000027,
+          "max": 237.97900000000027,
+          "avg": 237.97900000000027,
+          "median": 237.97900000000027,
+          "p95": 237.97900000000027,
+          "p99": 237.97900000000027
+        },
+        "memory": {
+          "avgHeapDelta": 4254240,
+          "maxHeapDelta": 4254240,
+          "minHeapDelta": 4254240
+        },
+        "operations": [
+          {
+            "operationName": "security.vulnerability.scan",
+            "profileId": "security.vulnerability.scan_1754021415923_wmo0bix5f",
+            "duration": 237.97900000000027,
+            "startTime": 4234.3429,
+            "endTime": 4472.3219,
+            "memoryDelta": {
+              "rss": 0,
+              "heapUsed": 4254240,
+              "heapTotal": 0,
+              "external": 0
+            },
+            "metadata": {
+              "category": "security",
+              "critical": true,
+              "sensitive": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      "security.penetration.test": {
+        "operationName": "security.penetration.test",
+        "count": 1,
+        "duration": {
+          "min": 274.2925000000005,
+          "max": 274.2925000000005,
+          "avg": 274.2925000000005,
+          "median": 274.2925000000005,
+          "p95": 274.2925000000005,
+          "p99": 274.2925000000005
+        },
+        "memory": {
+          "avgHeapDelta": 1926320,
+          "maxHeapDelta": 1926320,
+          "minHeapDelta": 1926320
+        },
+        "operations": [
+          {
+            "operationName": "security.penetration.test",
+            "profileId": "security.penetration.test_1754021416161_oeir86e7w",
+            "duration": 274.2925000000005,
+            "startTime": 4472.3781,
+            "endTime": 4746.6706,
+            "memoryDelta": {
+              "rss": 110592,
+              "heapUsed": 1926320,
+              "heapTotal": 262144,
+              "external": 0
+            },
+            "metadata": {
+              "category": "security",
+              "critical": true,
+              "sensitive": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      }
+    },
+    "slowOperations": [
+      {
+        "operationName": "installation.dependencies.install",
+        "count": 1,
+        "duration": {
+          "min": 487.67510000000016,
+          "max": 487.67510000000016,
+          "avg": 487.67510000000016,
+          "median": 487.67510000000016,
+          "p95": 487.67510000000016,
+          "p99": 487.67510000000016
+        },
+        "memory": {
+          "avgHeapDelta": 13362024,
+          "maxHeapDelta": 13362024,
+          "minHeapDelta": 13362024
+        },
+        "operations": [
+          {
+            "operationName": "installation.dependencies.install",
+            "profileId": "installation.dependencies.install_1754021413208_npku8e5w7",
+            "duration": 487.67510000000016,
+            "startTime": 1519.7332,
+            "endTime": 2007.4083,
+            "memoryDelta": {
+              "rss": 102400,
+              "heapUsed": 13362024,
+              "heapTotal": 0,
+              "external": 0
+            },
+            "metadata": {
+              "category": "installation",
+              "critical": true,
+              "userFacing": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      {
+        "operationName": "filesystem.file.read.large",
+        "count": 1,
+        "duration": {
+          "min": 480.8512999999998,
+          "max": 480.8512999999998,
+          "avg": 480.8512999999998,
+          "median": 480.8512999999998,
+          "p95": 480.8512999999998,
+          "p99": 480.8512999999998
+        },
+        "memory": {
+          "avgHeapDelta": -4847624,
+          "maxHeapDelta": -4847624,
+          "minHeapDelta": -4847624
+        },
+        "operations": [
+          {
+            "operationName": "filesystem.file.read.large",
+            "profileId": "filesystem.file.read.large_1754021414300_3ionr5ibz",
+            "duration": 480.8512999999998,
+            "startTime": 2611.8885,
+            "endTime": 3092.7398,
+            "memoryDelta": {
+              "rss": 0,
+              "heapUsed": -4847624,
+              "heapTotal": 0,
+              "external": 0
+            },
+            "metadata": {
+              "category": "filesystem",
+              "critical": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      {
+        "operationName": "filesystem.template.copy.bulk",
+        "count": 1,
+        "duration": {
+          "min": 479.52540000000045,
+          "max": 479.52540000000045,
+          "avg": 479.52540000000045,
+          "median": 479.52540000000045,
+          "p95": 479.52540000000045,
+          "p99": 479.52540000000045
+        },
+        "memory": {
+          "avgHeapDelta": 10197272,
+          "maxHeapDelta": 10197272,
+          "minHeapDelta": 10197272
+        },
+        "operations": [
+          {
+            "operationName": "filesystem.template.copy.bulk",
+            "profileId": "filesystem.template.copy.bulk_1754021415240_05rr25w6n",
+            "duration": 479.52540000000045,
+            "startTime": 3551.4248,
+            "endTime": 4030.9502,
+            "memoryDelta": {
+              "rss": 110592,
+              "heapUsed": 10197272,
+              "heapTotal": 262144,
+              "external": 0
+            },
+            "metadata": {
+              "category": "filesystem",
+              "critical": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      {
+        "operationName": "memory.index.build",
+        "count": 1,
+        "duration": {
+          "min": 479.04369999999994,
+          "max": 479.04369999999994,
+          "avg": 479.04369999999994,
+          "median": 479.04369999999994,
+          "p95": 479.04369999999994,
+          "p99": 479.04369999999994
+        },
+        "memory": {
+          "avgHeapDelta": 12719856,
+          "maxHeapDelta": 12719856,
+          "minHeapDelta": 12719856
+        },
+        "operations": [
+          {
+            "operationName": "memory.index.build",
+            "profileId": "memory.index.build_1754021412261_m4tikpqkd",
+            "duration": 479.04369999999994,
+            "startTime": 572.5732,
+            "endTime": 1051.6169,
+            "memoryDelta": {
+              "rss": 14823424,
+              "heapUsed": 12719856,
+              "heapTotal": 14688256,
+              "external": -40
+            },
+            "metadata": {
+              "category": "memory",
+              "critical": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      {
+        "operationName": "filesystem.file.write.large",
+        "count": 1,
+        "duration": {
+          "min": 440.6381000000001,
+          "max": 440.6381000000001,
+          "avg": 440.6381000000001,
+          "median": 440.6381000000001,
+          "p95": 440.6381000000001,
+          "p99": 440.6381000000001
+        },
+        "memory": {
+          "avgHeapDelta": -5525792,
+          "maxHeapDelta": -5525792,
+          "minHeapDelta": -5525792
+        },
+        "operations": [
+          {
+            "operationName": "filesystem.file.write.large",
+            "profileId": "filesystem.file.write.large_1754021414789_o5mfb68l8",
+            "duration": 440.6381000000001,
+            "startTime": 3100.5015,
+            "endTime": 3541.1396,
+            "memoryDelta": {
+              "rss": 0,
+              "heapUsed": -5525792,
+              "heapTotal": 0,
+              "external": 0
+            },
+            "metadata": {
+              "category": "filesystem",
+              "critical": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      {
+        "operationName": "security.penetration.test",
+        "count": 1,
+        "duration": {
+          "min": 274.2925000000005,
+          "max": 274.2925000000005,
+          "avg": 274.2925000000005,
+          "median": 274.2925000000005,
+          "p95": 274.2925000000005,
+          "p99": 274.2925000000005
+        },
+        "memory": {
+          "avgHeapDelta": 1926320,
+          "maxHeapDelta": 1926320,
+          "minHeapDelta": 1926320
+        },
+        "operations": [
+          {
+            "operationName": "security.penetration.test",
+            "profileId": "security.penetration.test_1754021416161_oeir86e7w",
+            "duration": 274.2925000000005,
+            "startTime": 4472.3781,
+            "endTime": 4746.6706,
+            "memoryDelta": {
+              "rss": 110592,
+              "heapUsed": 1926320,
+              "heapTotal": 262144,
+              "external": 0
+            },
+            "metadata": {
+              "category": "security",
+              "critical": true,
+              "sensitive": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      {
+        "operationName": "security.vulnerability.scan",
+        "count": 1,
+        "duration": {
+          "min": 237.97900000000027,
+          "max": 237.97900000000027,
+          "avg": 237.97900000000027,
+          "median": 237.97900000000027,
+          "p95": 237.97900000000027,
+          "p99": 237.97900000000027
+        },
+        "memory": {
+          "avgHeapDelta": 4254240,
+          "maxHeapDelta": 4254240,
+          "minHeapDelta": 4254240
+        },
+        "operations": [
+          {
+            "operationName": "security.vulnerability.scan",
+            "profileId": "security.vulnerability.scan_1754021415923_wmo0bix5f",
+            "duration": 237.97900000000027,
+            "startTime": 4234.3429,
+            "endTime": 4472.3219,
+            "memoryDelta": {
+              "rss": 0,
+              "heapUsed": 4254240,
+              "heapTotal": 0,
+              "external": 0
+            },
+            "metadata": {
+              "category": "security",
+              "critical": true,
+              "sensitive": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      {
+        "operationName": "component.code.generate",
+        "count": 1,
+        "duration": {
+          "min": 199.23649999999998,
+          "max": 199.23649999999998,
+          "avg": 199.23649999999998,
+          "median": 199.23649999999998,
+          "p95": 199.23649999999998,
+          "p99": 199.23649999999998
+        },
+        "memory": {
+          "avgHeapDelta": -12539984,
+          "maxHeapDelta": -12539984,
+          "minHeapDelta": -12539984
+        },
+        "operations": [
+          {
+            "operationName": "component.code.generate",
+            "profileId": "component.code.generate_1754021414086_bp5yclri6",
+            "duration": 199.23649999999998,
+            "startTime": 2397.8507,
+            "endTime": 2597.0872,
+            "memoryDelta": {
+              "rss": 102400,
+              "heapUsed": -12539984,
+              "heapTotal": 0,
+              "external": 0
+            },
+            "metadata": {
+              "category": "component-generation",
+              "critical": true,
+              "userFacing": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      {
+        "operationName": "memory.index.update",
+        "count": 1,
+        "duration": {
+          "min": 146.44990000000007,
+          "max": 146.44990000000007,
+          "avg": 146.44990000000007,
+          "median": 146.44990000000007,
+          "p95": 146.44990000000007,
+          "p99": 146.44990000000007
+        },
+        "memory": {
+          "avgHeapDelta": 14606272,
+          "maxHeapDelta": 14606272,
+          "minHeapDelta": 14606272
+        },
+        "operations": [
+          {
+            "operationName": "memory.index.update",
+            "profileId": "memory.index.update_1754021412740_u869ckcl3",
+            "duration": 146.44990000000007,
+            "startTime": 1051.684,
+            "endTime": 1198.1339,
+            "memoryDelta": {
+              "rss": 18911232,
+              "heapUsed": 14606272,
+              "heapTotal": 18882560,
+              "external": 0
+            },
+            "metadata": {
+              "category": "memory",
+              "critical": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      }
+    ],
+    "memoryIntensiveOps": [
+      {
+        "operationName": "memory.document.store",
+        "count": 1,
+        "duration": {
+          "min": 93.22180000000003,
+          "max": 93.22180000000003,
+          "avg": 93.22180000000003,
+          "median": 93.22180000000003,
+          "p95": 93.22180000000003,
+          "p99": 93.22180000000003
+        },
+        "memory": {
+          "avgHeapDelta": 17948240,
+          "maxHeapDelta": 17948240,
+          "minHeapDelta": 17948240
+        },
+        "operations": [
+          {
+            "operationName": "memory.document.store",
+            "profileId": "memory.document.store_1754021412887_jj7upbvyq",
+            "duration": 93.22180000000003,
+            "startTime": 1198.1895,
+            "endTime": 1291.4113,
+            "memoryDelta": {
+              "rss": 27320320,
+              "heapUsed": 17948240,
+              "heapTotal": 27271168,
+              "external": 0
+            },
+            "metadata": {
+              "category": "memory",
+              "critical": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      {
+        "operationName": "memory.index.update",
+        "count": 1,
+        "duration": {
+          "min": 146.44990000000007,
+          "max": 146.44990000000007,
+          "avg": 146.44990000000007,
+          "median": 146.44990000000007,
+          "p95": 146.44990000000007,
+          "p99": 146.44990000000007
+        },
+        "memory": {
+          "avgHeapDelta": 14606272,
+          "maxHeapDelta": 14606272,
+          "minHeapDelta": 14606272
+        },
+        "operations": [
+          {
+            "operationName": "memory.index.update",
+            "profileId": "memory.index.update_1754021412740_u869ckcl3",
+            "duration": 146.44990000000007,
+            "startTime": 1051.684,
+            "endTime": 1198.1339,
+            "memoryDelta": {
+              "rss": 18911232,
+              "heapUsed": 14606272,
+              "heapTotal": 18882560,
+              "external": 0
+            },
+            "metadata": {
+              "category": "memory",
+              "critical": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      {
+        "operationName": "installation.dependencies.install",
+        "count": 1,
+        "duration": {
+          "min": 487.67510000000016,
+          "max": 487.67510000000016,
+          "avg": 487.67510000000016,
+          "median": 487.67510000000016,
+          "p95": 487.67510000000016,
+          "p99": 487.67510000000016
+        },
+        "memory": {
+          "avgHeapDelta": 13362024,
+          "maxHeapDelta": 13362024,
+          "minHeapDelta": 13362024
+        },
+        "operations": [
+          {
+            "operationName": "installation.dependencies.install",
+            "profileId": "installation.dependencies.install_1754021413208_npku8e5w7",
+            "duration": 487.67510000000016,
+            "startTime": 1519.7332,
+            "endTime": 2007.4083,
+            "memoryDelta": {
+              "rss": 102400,
+              "heapUsed": 13362024,
+              "heapTotal": 0,
+              "external": 0
+            },
+            "metadata": {
+              "category": "installation",
+              "critical": true,
+              "userFacing": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      {
+        "operationName": "memory.index.build",
+        "count": 1,
+        "duration": {
+          "min": 479.04369999999994,
+          "max": 479.04369999999994,
+          "avg": 479.04369999999994,
+          "median": 479.04369999999994,
+          "p95": 479.04369999999994,
+          "p99": 479.04369999999994
+        },
+        "memory": {
+          "avgHeapDelta": 12719856,
+          "maxHeapDelta": 12719856,
+          "minHeapDelta": 12719856
+        },
+        "operations": [
+          {
+            "operationName": "memory.index.build",
+            "profileId": "memory.index.build_1754021412261_m4tikpqkd",
+            "duration": 479.04369999999994,
+            "startTime": 572.5732,
+            "endTime": 1051.6169,
+            "memoryDelta": {
+              "rss": 14823424,
+              "heapUsed": 12719856,
+              "heapTotal": 14688256,
+              "external": -40
+            },
+            "metadata": {
+              "category": "memory",
+              "critical": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      {
+        "operationName": "filesystem.template.copy.bulk",
+        "count": 1,
+        "duration": {
+          "min": 479.52540000000045,
+          "max": 479.52540000000045,
+          "avg": 479.52540000000045,
+          "median": 479.52540000000045,
+          "p95": 479.52540000000045,
+          "p99": 479.52540000000045
+        },
+        "memory": {
+          "avgHeapDelta": 10197272,
+          "maxHeapDelta": 10197272,
+          "minHeapDelta": 10197272
+        },
+        "operations": [
+          {
+            "operationName": "filesystem.template.copy.bulk",
+            "profileId": "filesystem.template.copy.bulk_1754021415240_05rr25w6n",
+            "duration": 479.52540000000045,
+            "startTime": 3551.4248,
+            "endTime": 4030.9502,
+            "memoryDelta": {
+              "rss": 110592,
+              "heapUsed": 10197272,
+              "heapTotal": 262144,
+              "external": 0
+            },
+            "metadata": {
+              "category": "filesystem",
+              "critical": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      {
+        "operationName": "installation.verification.run",
+        "count": 1,
+        "duration": {
+          "min": 69.47360000000026,
+          "max": 69.47360000000026,
+          "avg": 69.47360000000026,
+          "median": 69.47360000000026,
+          "p95": 69.47360000000026,
+          "p99": 69.47360000000026
+        },
+        "memory": {
+          "avgHeapDelta": 9547264,
+          "maxHeapDelta": 9547264,
+          "minHeapDelta": 9547264
+        },
+        "operations": [
+          {
+            "operationName": "installation.verification.run",
+            "profileId": "installation.verification.run_1754021413915_t66d13hq0",
+            "duration": 69.47360000000026,
+            "startTime": 2226.2295,
+            "endTime": 2295.7031,
+            "memoryDelta": {
+              "rss": 110592,
+              "heapUsed": 9547264,
+              "heapTotal": 262144,
+              "external": 0
+            },
+            "metadata": {
+              "category": "installation",
+              "critical": true,
+              "userFacing": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      {
+        "operationName": "security.credential.encrypt",
+        "count": 1,
+        "duration": {
+          "min": 88.37930000000006,
+          "max": 88.37930000000006,
+          "avg": 88.37930000000006,
+          "median": 88.37930000000006,
+          "p95": 88.37930000000006,
+          "p99": 88.37930000000006
+        },
+        "memory": {
+          "avgHeapDelta": 8261664,
+          "maxHeapDelta": 8261664,
+          "minHeapDelta": 8261664
+        },
+        "operations": [
+          {
+            "operationName": "security.credential.encrypt",
+            "profileId": "security.credential.encrypt_1754021415783_9yq09hsmj",
+            "duration": 88.37930000000006,
+            "startTime": 4094.8725,
+            "endTime": 4183.2518,
+            "memoryDelta": {
+              "rss": 102400,
+              "heapUsed": 8261664,
+              "heapTotal": 0,
+              "external": 0
+            },
+            "metadata": {
+              "category": "security",
+              "critical": true,
+              "sensitive": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      {
+        "operationName": "filesystem.file.write.small",
+        "count": 1,
+        "duration": {
+          "min": 7.65769999999975,
+          "max": 7.65769999999975,
+          "avg": 7.65769999999975,
+          "median": 7.65769999999975,
+          "p95": 7.65769999999975,
+          "p99": 7.65769999999975
+        },
+        "memory": {
+          "avgHeapDelta": 6684064,
+          "maxHeapDelta": 6684064,
+          "minHeapDelta": 6684064
+        },
+        "operations": [
+          {
+            "operationName": "filesystem.file.write.small",
+            "profileId": "filesystem.file.write.small_1754021414781_vb5t9waq4",
+            "duration": 7.65769999999975,
+            "startTime": 3092.7921,
+            "endTime": 3100.4498,
+            "memoryDelta": {
+              "rss": 0,
+              "heapUsed": 6684064,
+              "heapTotal": 0,
+              "external": 0
+            },
+            "metadata": {
+              "category": "filesystem",
+              "critical": false,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      {
+        "operationName": "component.validation.syntax",
+        "count": 1,
+        "duration": {
+          "min": 6.8508999999999105,
+          "max": 6.8508999999999105,
+          "avg": 6.8508999999999105,
+          "median": 6.8508999999999105,
+          "p95": 6.8508999999999105,
+          "p99": 6.8508999999999105
+        },
+        "memory": {
+          "avgHeapDelta": 5537408,
+          "maxHeapDelta": 5537408,
+          "minHeapDelta": 5537408
+        },
+        "operations": [
+          {
+            "operationName": "component.validation.syntax",
+            "profileId": "component.validation.syntax_1754021414288_bmkwn3efo",
+            "duration": 6.8508999999999105,
+            "startTime": 2599.362,
+            "endTime": 2606.2129,
+            "memoryDelta": {
+              "rss": 0,
+              "heapUsed": 5537408,
+              "heapTotal": 0,
+              "external": 0
+            },
+            "metadata": {
+              "category": "component-generation",
+              "critical": true,
+              "userFacing": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      {
+        "operationName": "filesystem.directory.scan",
+        "count": 1,
+        "duration": {
+          "min": 5.534299999999803,
+          "max": 5.534299999999803,
+          "avg": 5.534299999999803,
+          "median": 5.534299999999803,
+          "p95": 5.534299999999803,
+          "p99": 5.534299999999803
+        },
+        "memory": {
+          "avgHeapDelta": 4796864,
+          "maxHeapDelta": 4796864,
+          "minHeapDelta": 4796864
+        },
+        "operations": [
+          {
+            "operationName": "filesystem.directory.scan",
+            "profileId": "filesystem.directory.scan_1754021415230_wnhc6bhm9",
+            "duration": 5.534299999999803,
+            "startTime": 3541.2022,
+            "endTime": 3546.7365,
+            "memoryDelta": {
+              "rss": 0,
+              "heapUsed": 4796864,
+              "heapTotal": 0,
+              "external": 0
+            },
+            "metadata": {
+              "category": "filesystem",
+              "critical": false,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      {
+        "operationName": "component.template.load",
+        "count": 1,
+        "duration": {
+          "min": 5.291500000000269,
+          "max": 5.291500000000269,
+          "avg": 5.291500000000269,
+          "median": 5.291500000000269,
+          "p95": 5.291500000000269,
+          "p99": 5.291500000000269
+        },
+        "memory": {
+          "avgHeapDelta": 4615224,
+          "maxHeapDelta": 4615224,
+          "minHeapDelta": 4615224
+        },
+        "operations": [
+          {
+            "operationName": "component.template.load",
+            "profileId": "component.template.load_1754021414078_00lmqq01u",
+            "duration": 5.291500000000269,
+            "startTime": 2389.47,
+            "endTime": 2394.7615,
+            "memoryDelta": {
+              "rss": 0,
+              "heapUsed": 4615224,
+              "heapTotal": 0,
+              "external": 0
+            },
+            "metadata": {
+              "category": "component-generation",
+              "critical": true,
+              "userFacing": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      {
+        "operationName": "memory.document.retrieve",
+        "count": 1,
+        "duration": {
+          "min": 75.39359999999988,
+          "max": 75.39359999999988,
+          "avg": 75.39359999999988,
+          "median": 75.39359999999988,
+          "p95": 75.39359999999988,
+          "p99": 75.39359999999988
+        },
+        "memory": {
+          "avgHeapDelta": 4312960,
+          "maxHeapDelta": 4312960,
+          "minHeapDelta": 4312960
+        },
+        "operations": [
+          {
+            "operationName": "memory.document.retrieve",
+            "profileId": "memory.document.retrieve_1754021412980_rdo5bp3x3",
+            "duration": 75.39359999999988,
+            "startTime": 1291.4681,
+            "endTime": 1366.8617,
+            "memoryDelta": {
+              "rss": 10493952,
+              "heapUsed": 4312960,
+              "heapTotal": 10493952,
+              "external": 0
+            },
+            "metadata": {
+              "category": "memory",
+              "critical": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      {
+        "operationName": "security.vulnerability.scan",
+        "count": 1,
+        "duration": {
+          "min": 237.97900000000027,
+          "max": 237.97900000000027,
+          "avg": 237.97900000000027,
+          "median": 237.97900000000027,
+          "p95": 237.97900000000027,
+          "p99": 237.97900000000027
+        },
+        "memory": {
+          "avgHeapDelta": 4254240,
+          "maxHeapDelta": 4254240,
+          "minHeapDelta": 4254240
+        },
+        "operations": [
+          {
+            "operationName": "security.vulnerability.scan",
+            "profileId": "security.vulnerability.scan_1754021415923_wmo0bix5f",
+            "duration": 237.97900000000027,
+            "startTime": 4234.3429,
+            "endTime": 4472.3219,
+            "memoryDelta": {
+              "rss": 0,
+              "heapUsed": 4254240,
+              "heapTotal": 0,
+              "external": 0
+            },
+            "metadata": {
+              "category": "security",
+              "critical": true,
+              "sensitive": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      {
+        "operationName": "filesystem.file.read.small",
+        "count": 1,
+        "duration": {
+          "min": 4.098199999999906,
+          "max": 4.098199999999906,
+          "avg": 4.098199999999906,
+          "median": 4.098199999999906,
+          "p95": 4.098199999999906,
+          "p99": 4.098199999999906
+        },
+        "memory": {
+          "avgHeapDelta": 3547512,
+          "maxHeapDelta": 3547512,
+          "minHeapDelta": 3547512
+        },
+        "operations": [
+          {
+            "operationName": "filesystem.file.read.small",
+            "profileId": "filesystem.file.read.small_1754021414296_blssle4zm",
+            "duration": 4.098199999999906,
+            "startTime": 2607.7559,
+            "endTime": 2611.8541,
+            "memoryDelta": {
+              "rss": 0,
+              "heapUsed": 3547512,
+              "heapTotal": 0,
+              "external": 0
+            },
+            "metadata": {
+              "category": "filesystem",
+              "critical": false,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      {
+        "operationName": "component.template.process",
+        "count": 1,
+        "duration": {
+          "min": 3.0273999999999432,
+          "max": 3.0273999999999432,
+          "avg": 3.0273999999999432,
+          "median": 3.0273999999999432,
+          "p95": 3.0273999999999432,
+          "p99": 3.0273999999999432
+        },
+        "memory": {
+          "avgHeapDelta": 2699632,
+          "maxHeapDelta": 2699632,
+          "minHeapDelta": 2699632
+        },
+        "operations": [
+          {
+            "operationName": "component.template.process",
+            "profileId": "component.template.process_1754021414083_go553gss3",
+            "duration": 3.0273999999999432,
+            "startTime": 2394.7955,
+            "endTime": 2397.8229,
+            "memoryDelta": {
+              "rss": 0,
+              "heapUsed": 2699632,
+              "heapTotal": 0,
+              "external": 0
+            },
+            "metadata": {
+              "category": "component-generation",
+              "critical": true,
+              "userFacing": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      {
+        "operationName": "memory.memory.consolidate",
+        "count": 1,
+        "duration": {
+          "min": 92.2174,
+          "max": 92.2174,
+          "avg": 92.2174,
+          "median": 92.2174,
+          "p95": 92.2174,
+          "p99": 92.2174
+        },
+        "memory": {
+          "avgHeapDelta": 2565008,
+          "maxHeapDelta": 2565008,
+          "minHeapDelta": 2565008
+        },
+        "operations": [
+          {
+            "operationName": "memory.memory.consolidate",
+            "profileId": "memory.memory.consolidate_1754021413055_bzg5aisuf",
+            "duration": 92.2174,
+            "startTime": 1366.9279,
+            "endTime": 1459.1453,
+            "memoryDelta": {
+              "rss": 10498048,
+              "heapUsed": 2565008,
+              "heapTotal": 10493952,
+              "external": 0
+            },
+            "metadata": {
+              "category": "memory",
+              "critical": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      {
+        "operationName": "component.file.write",
+        "count": 1,
+        "duration": {
+          "min": 2.196700000000419,
+          "max": 2.196700000000419,
+          "avg": 2.196700000000419,
+          "median": 2.196700000000419,
+          "p95": 2.196700000000419,
+          "p99": 2.196700000000419
+        },
+        "memory": {
+          "avgHeapDelta": 1982008,
+          "maxHeapDelta": 1982008,
+          "minHeapDelta": 1982008
+        },
+        "operations": [
+          {
+            "operationName": "component.file.write",
+            "profileId": "component.file.write_1754021414286_r39mrbvv3",
+            "duration": 2.196700000000419,
+            "startTime": 2597.1512,
+            "endTime": 2599.3479,
+            "memoryDelta": {
+              "rss": 0,
+              "heapUsed": 1982008,
+              "heapTotal": 0,
+              "external": 0
+            },
+            "metadata": {
+              "category": "component-generation",
+              "critical": true,
+              "userFacing": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      {
+        "operationName": "security.penetration.test",
+        "count": 1,
+        "duration": {
+          "min": 274.2925000000005,
+          "max": 274.2925000000005,
+          "avg": 274.2925000000005,
+          "median": 274.2925000000005,
+          "p95": 274.2925000000005,
+          "p99": 274.2925000000005
+        },
+        "memory": {
+          "avgHeapDelta": 1926320,
+          "maxHeapDelta": 1926320,
+          "minHeapDelta": 1926320
+        },
+        "operations": [
+          {
+            "operationName": "security.penetration.test",
+            "profileId": "security.penetration.test_1754021416161_oeir86e7w",
+            "duration": 274.2925000000005,
+            "startTime": 4472.3781,
+            "endTime": 4746.6706,
+            "memoryDelta": {
+              "rss": 110592,
+              "heapUsed": 1926320,
+              "heapTotal": 262144,
+              "external": 0
+            },
+            "metadata": {
+              "category": "security",
+              "critical": true,
+              "sensitive": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      {
+        "operationName": "meta-agent.task.execute",
+        "count": 1,
+        "duration": {
+          "min": 27.767899999999997,
+          "max": 27.767899999999997,
+          "avg": 27.767899999999997,
+          "median": 27.767899999999997,
+          "p95": 27.767899999999997,
+          "p99": 27.767899999999997
+        },
+        "memory": {
+          "avgHeapDelta": 1346880,
+          "maxHeapDelta": 1346880,
+          "minHeapDelta": 1346880
+        },
+        "operations": [
+          {
+            "operationName": "meta-agent.task.execute",
+            "profileId": "meta-agent.task.execute_1754021411858_2d5afa4p9",
+            "duration": 27.767899999999997,
+            "startTime": 169.4416,
+            "endTime": 197.2095,
+            "memoryDelta": {
+              "rss": 114688,
+              "heapUsed": 1346880,
+              "heapTotal": 262144,
+              "external": 0
+            },
+            "metadata": {
+              "category": "meta-agent",
+              "critical": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      {
+        "operationName": "component.integration.test",
+        "count": 1,
+        "duration": {
+          "min": 1.279399999999896,
+          "max": 1.279399999999896,
+          "avg": 1.279399999999896,
+          "median": 1.279399999999896,
+          "p95": 1.279399999999896,
+          "p99": 1.279399999999896
+        },
+        "memory": {
+          "avgHeapDelta": 1177472,
+          "maxHeapDelta": 1177472,
+          "minHeapDelta": 1177472
+        },
+        "operations": [
+          {
+            "operationName": "component.integration.test",
+            "profileId": "component.integration.test_1754021414295_6c0y8xgvn",
+            "duration": 1.279399999999896,
+            "startTime": 2606.2554,
+            "endTime": 2607.5348,
+            "memoryDelta": {
+              "rss": 0,
+              "heapUsed": 1177472,
+              "heapTotal": 0,
+              "external": 0
+            },
+            "metadata": {
+              "category": "component-generation",
+              "critical": true,
+              "userFacing": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      },
+      {
+        "operationName": "security.auth.validate",
+        "count": 1,
+        "duration": {
+          "min": 39.75540000000001,
+          "max": 39.75540000000001,
+          "avg": 39.75540000000001,
+          "median": 39.75540000000001,
+          "p95": 39.75540000000001,
+          "p99": 39.75540000000001
+        },
+        "memory": {
+          "avgHeapDelta": 1103776,
+          "maxHeapDelta": 1103776,
+          "minHeapDelta": 1103776
+        },
+        "operations": [
+          {
+            "operationName": "security.auth.validate",
+            "profileId": "security.auth.validate_1754021415744_lv75nzjbh",
+            "duration": 39.75540000000001,
+            "startTime": 4055.069,
+            "endTime": 4094.8244,
+            "memoryDelta": {
+              "rss": 110592,
+              "heapUsed": 1103776,
+              "heapTotal": 262144,
+              "external": 0
+            },
+            "metadata": {
+              "category": "security",
+              "critical": true,
+              "sensitive": true,
+              "simulation": true
+            },
+            "additionalData": {
+              "success": true
+            }
+          }
+        ]
+      }
+    ],
+    "counters": {},
+    "events": {
+      "total": 80,
+      "byType": {
+        "profile_start": 40,
+        "profile_end": 40
+      },
+      "recent": [
+        {
+          "eventType": "profile_start",
+          "timestamp": 3100.5052,
+          "wallTime": "2025-08-01T04:10:14.789Z",
+          "data": {
+            "operationName": "filesystem.file.write.large",
+            "profileId": "filesystem.file.write.large_1754021414789_o5mfb68l8",
+            "timestamp": "2025-08-01T04:10:14.789Z"
+          }
+        },
+        {
+          "eventType": "profile_end",
+          "timestamp": 3541.1691,
+          "wallTime": "2025-08-01T04:10:15.230Z",
+          "data": {
+            "operationName": "filesystem.file.write.large",
+            "profileId": "filesystem.file.write.large_1754021414789_o5mfb68l8",
+            "duration": 440.6381000000001,
+            "timestamp": "2025-08-01T04:10:15.230Z"
+          }
+        },
+        {
+          "eventType": "profile_start",
+          "timestamp": 3541.2059,
+          "wallTime": "2025-08-01T04:10:15.230Z",
+          "data": {
+            "operationName": "filesystem.directory.scan",
+            "profileId": "filesystem.directory.scan_1754021415230_wnhc6bhm9",
+            "timestamp": "2025-08-01T04:10:15.230Z"
+          }
+        },
+        {
+          "eventType": "profile_end",
+          "timestamp": 3546.7525,
+          "wallTime": "2025-08-01T04:10:15.235Z",
+          "data": {
+            "operationName": "filesystem.directory.scan",
+            "profileId": "filesystem.directory.scan_1754021415230_wnhc6bhm9",
+            "duration": 5.534299999999803,
+            "timestamp": "2025-08-01T04:10:15.235Z"
+          }
+        },
+        {
+          "eventType": "profile_start",
+          "timestamp": 3546.774,
+          "wallTime": "2025-08-01T04:10:15.235Z",
+          "data": {
+            "operationName": "filesystem.archive.extract",
+            "profileId": "filesystem.archive.extract_1754021415235_jnici8ph3",
+            "timestamp": "2025-08-01T04:10:15.235Z"
+          }
+        },
+        {
+          "eventType": "profile_end",
+          "timestamp": 3551.4086,
+          "wallTime": "2025-08-01T04:10:15.240Z",
+          "data": {
+            "operationName": "filesystem.archive.extract",
+            "profileId": "filesystem.archive.extract_1754021415235_jnici8ph3",
+            "duration": 4.62519999999995,
+            "timestamp": "2025-08-01T04:10:15.240Z"
+          }
+        },
+        {
+          "eventType": "profile_start",
+          "timestamp": 3551.4283,
+          "wallTime": "2025-08-01T04:10:15.240Z",
+          "data": {
+            "operationName": "filesystem.template.copy.bulk",
+            "profileId": "filesystem.template.copy.bulk_1754021415240_05rr25w6n",
+            "timestamp": "2025-08-01T04:10:15.240Z"
+          }
+        },
+        {
+          "eventType": "profile_end",
+          "timestamp": 4030.9786,
+          "wallTime": "2025-08-01T04:10:15.719Z",
+          "data": {
+            "operationName": "filesystem.template.copy.bulk",
+            "profileId": "filesystem.template.copy.bulk_1754021415240_05rr25w6n",
+            "duration": 479.52540000000045,
+            "timestamp": "2025-08-01T04:10:15.719Z"
+          }
+        },
+        {
+          "eventType": "profile_start",
+          "timestamp": 4031.2114,
+          "wallTime": "2025-08-01T04:10:15.720Z",
+          "data": {
+            "operationName": "security.input.sanitize",
+            "profileId": "security.input.sanitize_1754021415720_tu0c6yezv",
+            "timestamp": "2025-08-01T04:10:15.720Z"
+          }
+        },
+        {
+          "eventType": "profile_end",
+          "timestamp": 4055.0397,
+          "wallTime": "2025-08-01T04:10:15.744Z",
+          "data": {
+            "operationName": "security.input.sanitize",
+            "profileId": "security.input.sanitize_1754021415720_tu0c6yezv",
+            "duration": 23.80490000000009,
+            "timestamp": "2025-08-01T04:10:15.744Z"
+          }
+        },
+        {
+          "eventType": "profile_start",
+          "timestamp": 4055.0723,
+          "wallTime": "2025-08-01T04:10:15.744Z",
+          "data": {
+            "operationName": "security.auth.validate",
+            "profileId": "security.auth.validate_1754021415744_lv75nzjbh",
+            "timestamp": "2025-08-01T04:10:15.744Z"
+          }
+        },
+        {
+          "eventType": "profile_end",
+          "timestamp": 4094.8485,
+          "wallTime": "2025-08-01T04:10:15.783Z",
+          "data": {
+            "operationName": "security.auth.validate",
+            "profileId": "security.auth.validate_1754021415744_lv75nzjbh",
+            "duration": 39.75540000000001,
+            "timestamp": "2025-08-01T04:10:15.783Z"
+          }
+        },
+        {
+          "eventType": "profile_start",
+          "timestamp": 4094.8758,
+          "wallTime": "2025-08-01T04:10:15.783Z",
+          "data": {
+            "operationName": "security.credential.encrypt",
+            "profileId": "security.credential.encrypt_1754021415783_9yq09hsmj",
+            "timestamp": "2025-08-01T04:10:15.783Z"
+          }
+        },
+        {
+          "eventType": "profile_end",
+          "timestamp": 4183.2799,
+          "wallTime": "2025-08-01T04:10:15.872Z",
+          "data": {
+            "operationName": "security.credential.encrypt",
+            "profileId": "security.credential.encrypt_1754021415783_9yq09hsmj",
+            "duration": 88.37930000000006,
+            "timestamp": "2025-08-01T04:10:15.872Z"
+          }
+        },
+        {
+          "eventType": "profile_start",
+          "timestamp": 4183.3088,
+          "wallTime": "2025-08-01T04:10:15.872Z",
+          "data": {
+            "operationName": "security.credential.decrypt",
+            "profileId": "security.credential.decrypt_1754021415872_b5yo7crb0",
+            "timestamp": "2025-08-01T04:10:15.872Z"
+          }
+        },
+        {
+          "eventType": "profile_end",
+          "timestamp": 4234.3135,
+          "wallTime": "2025-08-01T04:10:15.923Z",
+          "data": {
+            "operationName": "security.credential.decrypt",
+            "profileId": "security.credential.decrypt_1754021415872_b5yo7crb0",
+            "duration": 50.97810000000027,
+            "timestamp": "2025-08-01T04:10:15.923Z"
+          }
+        },
+        {
+          "eventType": "profile_start",
+          "timestamp": 4234.3468,
+          "wallTime": "2025-08-01T04:10:15.923Z",
+          "data": {
+            "operationName": "security.vulnerability.scan",
+            "profileId": "security.vulnerability.scan_1754021415923_wmo0bix5f",
+            "timestamp": "2025-08-01T04:10:15.923Z"
+          }
+        },
+        {
+          "eventType": "profile_end",
+          "timestamp": 4472.3495,
+          "wallTime": "2025-08-01T04:10:16.161Z",
+          "data": {
+            "operationName": "security.vulnerability.scan",
+            "profileId": "security.vulnerability.scan_1754021415923_wmo0bix5f",
+            "duration": 237.97900000000027,
+            "timestamp": "2025-08-01T04:10:16.161Z"
+          }
+        },
+        {
+          "eventType": "profile_start",
+          "timestamp": 4472.3817,
+          "wallTime": "2025-08-01T04:10:16.161Z",
+          "data": {
+            "operationName": "security.penetration.test",
+            "profileId": "security.penetration.test_1754021416161_oeir86e7w",
+            "timestamp": "2025-08-01T04:10:16.161Z"
+          }
+        },
+        {
+          "eventType": "profile_end",
+          "timestamp": 4746.7012,
+          "wallTime": "2025-08-01T04:10:16.435Z",
+          "data": {
+            "operationName": "security.penetration.test",
+            "profileId": "security.penetration.test_1754021416161_oeir86e7w",
+            "duration": 274.2925000000005,
+            "timestamp": "2025-08-01T04:10:16.435Z"
+          }
+        }
+      ]
+    },
+    "recommendations": [
+      {
+        "type": "memory",
+        "severity": "high",
+        "operation": "memory.document.store",
+        "issue": "Operation uses 17.12MB of heap on average",
+        "recommendation": "Review memory usage, consider streaming or chunking large data"
+      },
+      {
+        "type": "memory",
+        "severity": "high",
+        "operation": "memory.index.update",
+        "issue": "Operation uses 13.93MB of heap on average",
+        "recommendation": "Review memory usage, consider streaming or chunking large data"
+      },
+      {
+        "type": "memory",
+        "severity": "high",
+        "operation": "installation.dependencies.install",
+        "issue": "Operation uses 12.74MB of heap on average",
+        "recommendation": "Review memory usage, consider streaming or chunking large data"
+      }
+    ]
+  }
+}

