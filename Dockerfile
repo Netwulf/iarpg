@@ -43,4 +43,5 @@ ENV PORT=3001
 EXPOSE 3001
 
 # Start API
-CMD ["pnpm", "--filter=api", "start"]
+WORKDIR /app/apps/api
+CMD ["node", "dist/server.js"]
