@@ -1,0 +1,43 @@
+# Dependencies
+node_modules
+**/node_modules
+
+# Build outputs
+.next
+dist
+.turbo
+**/.turbo
+
+# Environment files
+.env.local
+.env.*.local
+**/.env.local
+
+# Development files
+.git
+.gitignore
+README.md
+*.md
+!package.json
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# Testing
+coverage
+.nyc_output
+**/__tests__
+**/*.test.ts
+**/*.spec.ts
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
