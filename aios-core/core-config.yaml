@@ -1,0 +1,119 @@
+# AIOS Core Configuration for IA-RPG Project
+# This file defines the structure and locations for the AIOS workflow
+
+project:
+  name: IA-RPG
+  type: greenfield
+  description: Text-based RPG platform with sync/async/solo modes and AI integration
+
+workflow:
+  type: greenfield-fullstack
+  developmentApproach: story-driven
+  primaryAgent: dev
+
+locations:
+  projectRoot: /Users/taypuri/Documents/vibecoding/aios-fullstack/expansion-packs/IARPG
+  docsRoot: docs
+  devStoryLocation: docs/stories
+  aiosCore: aios-core
+
+prd:
+  file: docs/prd.md
+  version: 1.1
+  sharded: false
+  epicLocation: docs/prd.md
+  epicPattern: "### Epic {num}:"
+
+architecture:
+  version: v1
+  sharded: false
+  file: docs/fullstack-architecture.md
+  sections:
+    - tech-stack
+    - data-models
+    - api-specification
+    - database-schema
+    - frontend-architecture
+    - backend-architecture
+    - unified-project-structure
+    - coding-standards
+    - testing-strategy
+    - security-and-performance
+    - error-handling-strategy
+
+frontendSpec:
+  file: docs/front-end-spec.md
+  version: 1.4
+  sharded: false
+
+storyTemplate:
+  file: aios-core/templates/story-tmpl.yaml
+  defaultStatus: Draft
+  statusValues:
+    - Draft
+    - Ready
+    - In Progress
+    - Blocked
+    - Done
+
+agents:
+  primary:
+    - dev
+    - architect
+    - pm
+    - po
+    - sm
+    - ux-expert
+
+dependencies:
+  languageModels:
+    primary: claude-sonnet-4
+    fallback: gpt-4o
+  externalServices:
+    - Supabase
+    - Vercel
+    - Railway
+    - OpenAI
+    - Resend
+    - Sentry
+    - PostHog
+
+techStack:
+  frontend:
+    framework: Next.js 14.2+
+    language: TypeScript 5.3+
+    styling: TailwindCSS 3.4+
+    uiLibrary: shadcn/ui
+    stateManagement: Zustand 4.5+
+  backend:
+    runtime: Node.js 20 LTS
+    framework: Express.js 4.19+
+    language: TypeScript 5.3+
+    database: PostgreSQL 15+ (Supabase)
+    orm: Prisma 5.20+
+    realtime: Socket.io 4.7+
+  monorepo:
+    tool: pnpm workspaces
+    orchestration: Turborepo 2.0+
+  testing:
+    unit: Vitest 1.6+
+    e2e: Playwright 1.45+
+  deployment:
+    frontend: Vercel
+    backend: Railway
+    database: Supabase
+
+conventions:
+  codeStyle: TypeScript strict mode
+  componentNaming: PascalCase
+  fileNaming: kebab-case
+  branchNaming: feature/{story-id}-{brief-description}
+  commitConvention: Conventional Commits
+
+notes: |
+  - This is a greenfield fullstack project using monorepo structure
+  - Stories should reference both architecture and front-end spec
+  - All code must be TypeScript with strict mode
+  - Design tokens are defined in front-end-spec.md Section 6.1.1
+  - Database schema is in architecture.md Section 9 (Prisma)
+  - API specification is in architecture.md Section 5
