@@ -1,5 +1,5 @@
 # Use Node.js 20 Alpine
-# Force rebuild with tsconfig.json
+# Force rebuild - cache bust 2024-10-03
 FROM node:20-alpine AS base
 
 # Install pnpm
