@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter, JetBrains_Mono } from 'next/font/google';
 import '../styles/globals.css';
-import { SocketProvider } from '@/contexts/SocketContext';
+import { Providers } from './providers';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
       <body>
-        <SocketProvider>{children}</SocketProvider>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
