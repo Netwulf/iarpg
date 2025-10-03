@@ -5,6 +5,9 @@ import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { Button, Card, CardHeader, CardTitle, CardContent } from '@iarpg/ui';
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
 export default function DashboardPage() {
   const { data: session, status } = useSession();
   const router = useRouter();
