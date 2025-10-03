@@ -1,4 +1,4 @@
-// Supabase exports (primary)
+// Supabase exports
 export { supabase, createSupabaseAdmin } from './supabase';
 export type {
   Database,
@@ -26,7 +26,3 @@ export type {
   Reaction,
   Combatant,
 } from './types';
-
-// Legacy Prisma exports (for migration compatibility)
-export { prisma } from './client';
-export type { Prisma } from '@prisma/client';

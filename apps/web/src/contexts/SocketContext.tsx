@@ -17,6 +17,9 @@ export function useSocket() {
   return useContext(SocketContext);
 }
 
+// Alias for backwards compatibility
+export const useSocketContext = useSocket;
+
 interface SocketProviderProps {
   children: ReactNode;
 }

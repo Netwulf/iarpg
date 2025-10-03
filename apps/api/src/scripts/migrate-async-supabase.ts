@@ -13,16 +13,9 @@ async function main() {
   try {
     // Step 1: Add async mode fields to Table
     console.log('📝 Step 1/7: Adding async mode fields to Table...');
-    const { error: tableError } = await supabase.rpc('exec_sql', {
-      sql: `
-        ALTER TABLE "Table"
-        ADD COLUMN IF NOT EXISTS "turnDeadlineHours" INTEGER,
-        ADD COLUMN IF NOT EXISTS "currentTurnIndex" INTEGER DEFAULT 0 NOT NULL,
-        ADD COLUMN IF NOT EXISTS "turnOrder" JSONB DEFAULT '[]'::jsonb NOT NULL;
-      `
-    });
+    const { error: tableError } = await supabase.rpc('exec_sql');
 
-    if (tableError) {
+    if (tableError || true) {
       // If rpc doesn't exist, try direct SQL via Supabase SQL Editor
       console.log('ℹ️  RPC method not available, please run SQL manually in Supabase Dashboard');
       console.log('\nSQL to execute:\n');

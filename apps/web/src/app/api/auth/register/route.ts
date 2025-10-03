@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@iarpg/db';
+import { supabase } from '@iarpg/db';
 import bcrypt from 'bcryptjs';
 import { z } from 'zod';
 
@@ -15,13 +15,20 @@ export async function POST(request: NextRequest) {
     const { email, username, password } = registerSchema.parse(body);
 
     // Check if email or username already exists
-    const existingUser = await prisma.user.findFirst({
-      where: {
-        OR: [{ email }, { username }],
-      },
-    });
+    const { data: existingUsers, error: checkError } = await (supabase
+      .from('users') as any)
+      .select('id')
+      .or(`email.eq.${email},username.eq.${username}`);
 
-    if (existingUser) {
+    if (checkError) {
+      console.error('Database error:', checkError);
+      return NextResponse.json(
+        { error: 'Database error' },
+        { status: 500 }
+      );
+    }
+
+    if (existingUsers && existingUsers.length > 0) {
       return NextResponse.json(
         { error: 'Email or username already exists' },
         { status: 400 }
@@ -32,21 +39,24 @@ export async function POST(request: NextRequest) {
     const passwordHash = await bcrypt.hash(password, 12);
 
     // Create user
-    const user = await prisma.user.create({
-      data: {
+    const { data: user, error: createError } = await (supabase
+      .from('users') as any)
+      .insert({
         email,
         username,
-        passwordHash,
+        password_hash: passwordHash,
         tier: 'free',
-      },
-      select: {
-        id: true,
-        email: true,
-        username: true,
-        tier: true,
-        createdAt: true,
-      },
-    });
+      })
+      .select('id, email, username, tier, created_at')
+      .single();
+
+    if (createError) {
+      console.error('User creation error:', createError);
+      return NextResponse.json(
+        { error: 'Failed to create user' },
+        { status: 500 }
+      );
+    }
 
     return NextResponse.json({ user }, { status: 201 });
   } catch (error) {

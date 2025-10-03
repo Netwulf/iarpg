@@ -2,7 +2,7 @@ import NextAuth, { NextAuthConfig } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
 import DiscordProvider from 'next-auth/providers/discord';
-import { prisma } from '@iarpg/db';
+import { supabase } from '@iarpg/db';
 import bcrypt from 'bcryptjs';
 
 export const authConfig: NextAuthConfig = {
@@ -27,17 +27,19 @@ export const authConfig: NextAuthConfig = {
           return null;
         }
 
-        const user = await prisma.user.findUnique({
-          where: { email: credentials.email as string },
-        });
+        const { data: user, error } = await (supabase
+          .from('users') as any)
+          .select('*')
+          .eq('email', credentials.email as string)
+          .single();
 
-        if (!user || !user.passwordHash) {
+        if (error || !user || !user.password_hash) {
           return null;
         }
 
         const isPasswordValid = await bcrypt.compare(
           credentials.password as string,
-          user.passwordHash
+          user.password_hash
         );
 
         if (!isPasswordValid) {
@@ -79,19 +81,21 @@ export const authConfig: NextAuthConfig = {
     async signIn({ user, account }) {
       if (account?.provider === 'google' || account?.provider === 'discord') {
         // Check if user exists
-        const existingUser = await prisma.user.findUnique({
-          where: { email: user.email! },
-        });
+        const { data: existingUser } = await (supabase
+          .from('users') as any)
+          .select('*')
+          .eq('email', user.email!)
+          .single();
 
         if (!existingUser) {
           // Create user from OAuth
-          await prisma.user.create({
-            data: {
+          await (supabase
+            .from('users') as any)
+            .insert({
               email: user.email!,
               username: user.email!.split('@')[0] + Math.random().toString(36).substring(7),
               tier: 'free',
-            },
-          });
+            });
         }
       }
       return true;

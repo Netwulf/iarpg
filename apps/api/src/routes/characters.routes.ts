@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { prisma } from '@iarpg/db';
+import { supabase } from '@iarpg/db';
 import { authMiddleware } from '../middleware/auth.middleware';
 import { AppError } from '../middleware/error.middleware';
 
@@ -63,9 +63,11 @@ router.post('/', async (req, res, next) => {
 
     const speed = speeds[race] || 30;
 
-    // Create character
-    const character = await prisma.character.create({
-      data: {
+    // Create character in Supabase
+    const { data: character, error } = await (supabase
+      .from('characters') as any)
+      .insert({
+        user_id: req.user!.id,
         name,
         race,
         class: className,
@@ -77,16 +79,21 @@ router.post('/', async (req, res, next) => {
         wisdom: abilityScores.wisdom,
         charisma: abilityScores.charisma,
         hp: maxHP,
-        maxHp: maxHP,
+        max_hp: maxHP,
         ac: armorClass,
         initiative,
         speed,
-        proficiencyBonus,
+        proficiency_bonus: proficiencyBonus,
         equipment: equipment || [],
         background: background || '',
-        userId: req.user!.id,
-      },
-    });
+      })
+      .select()
+      .single();
+
+    if (error) {
+      console.error('Supabase error creating character:', error);
+      throw new AppError('Failed to create character', 500, 'DATABASE_ERROR');
+    }
 
     res.status(201).json(character);
   } catch (error) {
@@ -97,16 +104,18 @@ router.post('/', async (req, res, next) => {
 // GET /api/characters - Get all characters for authenticated user
 router.get('/', async (req, res, next) => {
   try {
-    const characters = await prisma.character.findMany({
-      where: {
-        userId: req.user!.id,
-      },
-      orderBy: {
-        createdAt: 'desc',
-      },
-    });
+    const { data: characters, error } = await (supabase
+      .from('characters') as any)
+      .select('*')
+      .eq('user_id', req.user!.id)
+      .order('created_at', { ascending: false });
 
-    res.json(characters);
+    if (error) {
+      console.error('Supabase error fetching characters:', error);
+      throw new AppError('Failed to fetch characters', 500, 'DATABASE_ERROR');
+    }
+
+    res.json(characters || []);
   } catch (error) {
     next(error);
   }
@@ -115,18 +124,22 @@ router.get('/', async (req, res, next) => {
 // GET /api/characters/:id - Get a specific character
 router.get('/:id', async (req, res, next) => {
   try {
-    const character = await prisma.character.findUnique({
-      where: {
-        id: req.params.id,
-      },
-    });
+    const { data: character, error } = await (supabase
+      .from('characters') as any)
+      .select('*')
+      .eq('id', req.params.id)
+      .single();
 
-    if (!character) {
-      throw new AppError('Character not found', 404, 'NOT_FOUND');
+    if (error || !character) {
+      if (error?.code === 'PGRST116') {
+        throw new AppError('Character not found', 404, 'NOT_FOUND');
+      }
+      console.error('Supabase error fetching character:', error);
+      throw new AppError('Failed to fetch character', 500, 'DATABASE_ERROR');
     }
 
     // Verify ownership
-    if (character.userId !== req.user!.id) {
+    if (character.user_id !== req.user!.id) {
       throw new AppError('Not authorized to view this character', 403, 'FORBIDDEN');
     }
 
@@ -139,27 +152,38 @@ router.get('/:id', async (req, res, next) => {
 // PATCH /api/characters/:id - Update a character
 router.patch('/:id', async (req, res, next) => {
   try {
-    const character = await prisma.character.findUnique({
-      where: {
-        id: req.params.id,
-      },
-    });
+    // First verify character exists and ownership
+    const { data: character, error: fetchError } = await (supabase
+      .from('characters') as any)
+      .select('*')
+      .eq('id', req.params.id)
+      .single();
 
-    if (!character) {
-      throw new AppError('Character not found', 404, 'NOT_FOUND');
+    if (fetchError || !character) {
+      if (fetchError?.code === 'PGRST116') {
+        throw new AppError('Character not found', 404, 'NOT_FOUND');
+      }
+      console.error('Supabase error fetching character:', fetchError);
+      throw new AppError('Failed to fetch character', 500, 'DATABASE_ERROR');
     }
 
     // Verify ownership
-    if (character.userId !== req.user!.id) {
+    if (character.user_id !== req.user!.id) {
       throw new AppError('Not authorized to modify this character', 403, 'FORBIDDEN');
     }
 
-    const updatedCharacter = await prisma.character.update({
-      where: {
-        id: req.params.id,
-      },
-      data: req.body,
-    });
+    // Update character
+    const { data: updatedCharacter, error: updateError } = await (supabase
+      .from('characters') as any)
+      .update(req.body)
+      .eq('id', req.params.id)
+      .select()
+      .single();
+
+    if (updateError) {
+      console.error('Supabase error updating character:', updateError);
+      throw new AppError('Failed to update character', 500, 'DATABASE_ERROR');
+    }
 
     res.json(updatedCharacter);
   } catch (error) {
@@ -170,26 +194,36 @@ router.patch('/:id', async (req, res, next) => {
 // DELETE /api/characters/:id - Delete a character
 router.delete('/:id', async (req, res, next) => {
   try {
-    const character = await prisma.character.findUnique({
-      where: {
-        id: req.params.id,
-      },
-    });
+    // First verify character exists and ownership
+    const { data: character, error: fetchError } = await (supabase
+      .from('characters') as any)
+      .select('*')
+      .eq('id', req.params.id)
+      .single();
 
-    if (!character) {
-      throw new AppError('Character not found', 404, 'NOT_FOUND');
+    if (fetchError || !character) {
+      if (fetchError?.code === 'PGRST116') {
+        throw new AppError('Character not found', 404, 'NOT_FOUND');
+      }
+      console.error('Supabase error fetching character:', fetchError);
+      throw new AppError('Failed to fetch character', 500, 'DATABASE_ERROR');
     }
 
     // Verify ownership
-    if (character.userId !== req.user!.id) {
+    if (character.user_id !== req.user!.id) {
       throw new AppError('Not authorized to delete this character', 403, 'FORBIDDEN');
     }
 
-    await prisma.character.delete({
-      where: {
-        id: req.params.id,
-      },
-    });
+    // Delete character
+    const { error: deleteError } = await (supabase
+      .from('characters') as any)
+      .delete()
+      .eq('id', req.params.id);
+
+    if (deleteError) {
+      console.error('Supabase error deleting character:', deleteError);
+      throw new AppError('Failed to delete character', 500, 'DATABASE_ERROR');
+    }
 
     res.status(204).send();
   } catch (error) {

@@ -1,5 +1,5 @@
 import { Router, Request, Response, NextFunction } from 'express';
-import { prisma } from '@iarpg/db';
+import { supabase } from '@iarpg/db';
 import { authMiddleware } from '../middleware/auth.middleware';
 import { AppError } from '../middleware/error.middleware';
 import Anthropic from '@anthropic-ai/sdk';
@@ -23,48 +23,44 @@ router.post('/:tableId/assist', async (req: Request, res: Response, next: NextFu
     }
 
     // Fetch table and verify user is DM
-    const table = await prisma.table.findUnique({
-      where: { id: tableId },
-      include: {
-        members: {
-          include: {
-            character: {
-              select: {
-                name: true,
-                race: true,
-                class: true,
-                level: true,
-              },
-            },
-          },
-        },
-      },
-    });
+    const { data: table, error: tableError } = await (supabase
+      .from('tables') as any)
+      .select('*')
+      .eq('id', tableId)
+      .single();
 
-    if (!table) {
+    if (tableError || !table) {
       throw new AppError('Table not found', 404, 'NOT_FOUND');
     }
 
-    if (table.ownerId !== userId) {
+    if (table.owner_id !== userId) {
       throw new AppError('Only DM can use AI assistant', 403, 'FORBIDDEN');
     }
 
     // Check rate limit for free tier
-    const user = await prisma.user.findUnique({
-      where: { id: userId },
-      select: { tier: true },
-    });
+    const { data: user, error: userError } = await (supabase
+      .from('users') as any)
+      .select('tier')
+      .eq('id', userId)
+      .single();
+
+    if (userError) {
+      console.error('Error fetching user:', userError);
+    }
 
     if (user?.tier === 'free') {
-      const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000);
-      const recentUsage = await prisma.aIUsage.count({
-        where: {
-          userId,
-          createdAt: { gte: oneHourAgo },
-        },
-      });
+      const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000).toISOString();
+      const { count, error: countError } = await (supabase
+        .from('ai_usage') as any)
+        .select('*', { count: 'exact', head: true })
+        .eq('user_id', userId)
+        .gte('created_at', oneHourAgo);
 
-      if (recentUsage >= 10) {
+      if (countError) {
+        console.error('Error checking AI usage:', countError);
+      }
+
+      if ((count || 0) >= 10) {
         throw new AppError(
           'Rate limit exceeded. Upgrade to premium for unlimited requests.',
           429,
@@ -73,41 +69,77 @@ router.post('/:tableId/assist', async (req: Request, res: Response, next: NextFu
       }
     }
 
+    // Fetch table members with characters
+    const { data: members, error: membersError } = await (supabase
+      .from('table_members') as any)
+      .select(`
+        *,
+        character:characters!character_id (
+          name,
+          race,
+          class,
+          level
+        )
+      `)
+      .eq('table_id', tableId);
+
+    if (membersError) {
+      console.error('Error fetching table members:', membersError);
+    }
+
     // Fetch recent messages
-    const messages = await prisma.message.findMany({
-      where: { tableId },
-      include: {
-        user: { select: { username: true } },
-      },
-      orderBy: { createdAt: 'desc' },
-      take: 20,
-    });
+    const { data: messages, error: messagesError } = await (supabase
+      .from('messages') as any)
+      .select(`
+        *,
+        user:users!user_id (
+          username
+        )
+      `)
+      .eq('table_id', tableId)
+      .order('created_at', { ascending: false })
+      .limit(20);
+
+    if (messagesError) {
+      console.error('Error fetching messages:', messagesError);
+    }
 
     // Fetch active combat
-    const combat = await prisma.combatEncounter.findFirst({
-      where: { tableId, state: 'active' },
-    });
+    const { data: combat, error: combatError } = await (supabase
+      .from('combat_encounters') as any)
+      .select('*')
+      .eq('table_id', tableId)
+      .eq('state', 'active')
+      .maybeSingle();
+
+    if (combatError) {
+      console.error('Error fetching combat:', combatError);
+    }
 
     // Build system prompt with context
+    const characters = (members || [])
+      .map((m: any) => m.character)
+      .filter((c: any) => c !== null);
+
+    const recentMessages = (messages || [])
+      .reverse()
+      .map((m: any) => ({
+        username: m.user?.username || 'Unknown',
+        content: m.content,
+      }));
+
     const systemPrompt = buildSystemPrompt({
       table: {
         name: table.name,
-        description: table.description,
-        tags: table.tags,
+        description: table.description || '',
+        tags: table.tags || [],
       },
-      characters: table.members
-        .map((m) => m.character)
-        .filter((c): c is NonNullable<typeof c> => c !== null),
-      recentMessages: messages
-        .reverse()
-        .map((m) => ({
-          username: m.user.username,
-          content: m.content,
-        })),
+      characters,
+      recentMessages,
       combat: combat
         ? {
             round: combat.round,
-            combatants: (combat.combatants as any[]).map((c: any) => c.name),
+            combatants: ((combat.combatants as any[]) || []).map((c: any) => c.name),
           }
         : undefined,
     });
@@ -155,17 +187,17 @@ router.post('/:tableId/assist', async (req: Request, res: Response, next: NextFu
       // Calculate cost
       const cost = calculateCost(tokensUsed);
 
-      // Track usage
-      await prisma.aIUsage.create({
-        data: {
-          userId,
-          tableId,
+      // Track usage in Supabase
+      await (supabase
+        .from('ai_usage') as any)
+        .insert({
+          user_id: userId,
+          table_id: tableId,
           prompt: prompt.trim(),
           response: fullResponse,
-          tokensUsed,
+          tokens_used: tokensUsed,
           cost,
-        },
-      });
+        });
     } catch (error: any) {
       console.error('AI request failed:', error);
       res.write(`data: ${JSON.stringify({ error: 'AI request failed' })}\n\n`);
@@ -181,24 +213,33 @@ router.get('/remaining', async (req: Request, res: Response, next: NextFunction)
   try {
     const userId = req.user!.id;
 
-    const user = await prisma.user.findUnique({
-      where: { id: userId },
-      select: { tier: true },
-    });
+    const { data: user, error: userError } = await (supabase
+      .from('users') as any)
+      .select('tier')
+      .eq('id', userId)
+      .single();
+
+    if (userError) {
+      console.error('Error fetching user:', userError);
+      throw new AppError('Failed to fetch user', 500, 'DATABASE_ERROR');
+    }
 
     if (user?.tier === 'premium' || user?.tier === 'master') {
       return res.json({ remaining: 'unlimited', limit: 'unlimited' });
     }
 
-    const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000);
-    const recentUsage = await prisma.aIUsage.count({
-      where: {
-        userId,
-        createdAt: { gte: oneHourAgo },
-      },
-    });
+    const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000).toISOString();
+    const { count, error: countError } = await (supabase
+      .from('ai_usage') as any)
+      .select('*', { count: 'exact', head: true })
+      .eq('user_id', userId)
+      .gte('created_at', oneHourAgo);
 
-    res.json({ remaining: Math.max(0, 10 - recentUsage), limit: 10 });
+    if (countError) {
+      console.error('Error checking AI usage:', countError);
+    }
+
+    res.json({ remaining: Math.max(0, 10 - (count || 0)), limit: 10 });
   } catch (error) {
     next(error);
   }
