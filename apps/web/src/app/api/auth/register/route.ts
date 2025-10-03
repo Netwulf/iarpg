@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { supabase } from '@iarpg/db';
+import { createSupabaseAdmin } from '@iarpg/db';
 import bcrypt from 'bcryptjs';
 import { z } from 'zod';
 
@@ -14,8 +14,11 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { email, username, password } = registerSchema.parse(body);
 
+    // Use admin client to bypass RLS for user registration
+    const supabaseAdmin = createSupabaseAdmin();
+
     // Check if email or username already exists
-    const { data: existingUsers, error: checkError } = await (supabase
+    const { data: existingUsers, error: checkError } = await (supabaseAdmin
       .from('users') as any)
       .select('id')
       .or(`email.eq.${email},username.eq.${username}`);
@@ -38,8 +41,8 @@ export async function POST(request: NextRequest) {
     // Hash password
     const passwordHash = await bcrypt.hash(password, 12);
 
-    // Create user
-    const { data: user, error: createError } = await (supabase
+    // Create user with admin client
+    const { data: user, error: createError } = await (supabaseAdmin
       .from('users') as any)
       .insert({
         email,
