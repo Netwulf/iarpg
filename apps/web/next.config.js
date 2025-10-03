@@ -5,11 +5,6 @@ const nextConfig = {
   reactStrictMode: true,
   transpilePackages: ['@iarpg/shared', '@iarpg/ui', '@iarpg/db'],
   output: 'standalone',
-  experimental: {
-    outputFileTracingIncludes: {
-      '/': ['./node_modules/**/*'],
-    },
-  },
   webpack: (config) => {
     config.resolve.alias = {
       ...config.resolve.alias,
