@@ -2,11 +2,7 @@
 
 import { useState } from 'react';
 import { Tabs, TabsList, TabsTrigger, TabsContent, Card, CardHeader, CardTitle, CardContent } from '@iarpg/ui';
-import { CharacterHeader } from '@/components/character-sheet/character-header';
-import { CoreStats } from '@/components/character-sheet/core-stats';
-import { AbilityScores } from '@/components/character-sheet/ability-scores';
-import { SavingThrows } from '@/components/character-sheet/saving-throws';
-import { Skills } from '@/components/character-sheet/skills';
+import { CharacterHeader, CoreStats, AbilityScores, SavingThrows, Skills } from '@/components/character-sheet';
 
 interface Character {
   id: string;
