@@ -1,47 +1,26 @@
-# Use Node.js 20 Alpine
-# Force rebuild - cache bust 2024-10-03
-FROM node:20-alpine AS base
+# Production image
+FROM node:20-alpine
 
 # Install pnpm
 RUN npm install -g pnpm@9
 
-# Set working directory
 WORKDIR /app
 
-# Copy root files
-COPY package.json pnpm-lock.yaml pnpm-workspace.yaml tsconfig.json ./
+# Copy everything
+COPY . .
 
-# Copy all workspace packages
-COPY packages ./packages
-COPY apps ./apps
-
-# Install dependencies (no frozen lockfile)
+# Install all dependencies
 RUN pnpm install --no-frozen-lockfile
 
 # Build API
-RUN pnpm --filter=api build
-
-# Production stage
-FROM node:20-alpine AS production
-
-RUN npm install -g pnpm@9
-
-WORKDIR /app
-
-# Copy built files and dependencies
-COPY --from=base /app/node_modules ./node_modules
-COPY --from=base /app/package.json ./package.json
-COPY --from=base /app/pnpm-workspace.yaml ./pnpm-workspace.yaml
-COPY --from=base /app/packages ./packages
-COPY --from=base /app/apps/api ./apps/api
+RUN cd apps/api && pnpm build
 
 # Set environment
 ENV NODE_ENV=production
 ENV PORT=3001
 
-# Expose port
 EXPOSE 3001
 
-# Start API
+# Start
 WORKDIR /app/apps/api
 CMD ["node", "dist/server.js"]
