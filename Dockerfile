@@ -12,9 +12,8 @@ COPY . .
 # Install all dependencies
 RUN pnpm install --no-frozen-lockfile
 
-# Build API
+# Set working directory
 WORKDIR /app/apps/api
-RUN rm -f tsconfig.tsbuildinfo && pnpm build && ls -laR dist/
 
 # Set environment
 ENV NODE_ENV=production
@@ -22,5 +21,5 @@ ENV PORT=3001
 
 EXPOSE 3001
 
-# Start from /app/apps/api (already set by previous WORKDIR)
-CMD ["node", "dist/server.js"]
+# Use tsx to run TypeScript directly (handles monorepo imports)
+CMD ["npx", "tsx", "src/server.ts"]
