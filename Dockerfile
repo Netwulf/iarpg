@@ -13,7 +13,7 @@ COPY . .
 RUN pnpm install --no-frozen-lockfile
 
 # Build API
-RUN cd apps/api && pnpm build
+RUN cd apps/api && npx tsc
 
 # Set environment
 ENV NODE_ENV=production

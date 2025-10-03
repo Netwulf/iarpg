@@ -8,9 +8,18 @@ importers:
 
   .:
     devDependencies:
+      autoprefixer:
+        specifier: ^10.4.21
+        version: 10.4.21(postcss@8.5.6)
+      postcss:
+        specifier: ^8.5.6
+        version: 8.5.6
       prettier:
         specifier: ^3.2.5
         version: 3.6.2
+      tailwindcss:
+        specifier: ^3.4.17
+        version: 3.4.17
       turbo:
         specifier: ^2.0.0
         version: 2.5.8
@@ -241,7 +250,7 @@ importers:
         version: 3.3.1
       tailwindcss-animate:
         specifier: ^1.0.7
-        version: 1.0.7
+        version: 1.0.7(tailwindcss@3.4.17)
     devDependencies:
       '@types/react':
         specifier: ^18.3.0
@@ -6408,7 +6417,9 @@ snapshots:
 
   tailwind-merge@3.3.1: {}
 
-  tailwindcss-animate@1.0.7: {}
+  tailwindcss-animate@1.0.7(tailwindcss@3.4.17):
+    dependencies:
+      tailwindcss: 3.4.17
 
   tailwindcss@3.4.17:
     dependencies:
