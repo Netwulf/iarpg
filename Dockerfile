@@ -14,7 +14,7 @@ RUN pnpm install --no-frozen-lockfile
 
 # Build API
 WORKDIR /app/apps/api
-RUN pnpm build && ls -laR dist/
+RUN rm -f tsconfig.tsbuildinfo && pnpm build && ls -laR dist/
 
 # Set environment
 ENV NODE_ENV=production
