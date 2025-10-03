@@ -12,8 +12,16 @@ COPY . .
 # Install all dependencies
 RUN pnpm install --no-frozen-lockfile
 
-# Build API
-RUN cd apps/api && npx tsc
+# Build API - Debug and compile
+RUN cd apps/api && \
+    echo "=== API Directory Contents ===" && \
+    ls -la && \
+    echo "=== TSConfig Contents ===" && \
+    cat tsconfig.json && \
+    echo "=== Running TypeScript Compiler ===" && \
+    npx tsc --project tsconfig.json --listEmittedFiles && \
+    echo "=== Dist Directory Contents ===" && \
+    ls -la dist/
 
 # Set environment
 ENV NODE_ENV=production
