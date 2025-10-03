@@ -1,4 +1,5 @@
 # Use Node.js 20 Alpine
+# Force rebuild with tsconfig.json
 FROM node:20-alpine AS base
 
 # Install pnpm
