@@ -2,7 +2,7 @@ import NextAuth, { NextAuthConfig } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
 import DiscordProvider from 'next-auth/providers/discord';
-import { supabase } from '@iarpg/db';
+import { createSupabaseAdmin } from '@iarpg/db';
 import bcrypt from 'bcryptjs';
 
 // Validate required environment variables
@@ -35,7 +35,9 @@ export const authConfig: NextAuthConfig = {
           return null;
         }
 
-        const { data: user, error } = await (supabase
+        const supabaseAdmin = createSupabaseAdmin();
+
+        const { data: user, error } = await (supabaseAdmin
           .from('users') as any)
           .select('*')
           .eq('email', credentials.email as string)
@@ -91,8 +93,10 @@ export const authConfig: NextAuthConfig = {
     },
     async signIn({ user, account }) {
       if (account?.provider === 'google' || account?.provider === 'discord') {
+        const supabaseAdmin = createSupabaseAdmin();
+
         // Check if user exists
-        const { data: existingUser } = await (supabase
+        const { data: existingUser } = await (supabaseAdmin
           .from('users') as any)
           .select('*')
           .eq('email', user.email!)
@@ -100,7 +104,7 @@ export const authConfig: NextAuthConfig = {
 
         if (!existingUser) {
           // Create user from OAuth
-          await (supabase
+          await (supabaseAdmin
             .from('users') as any)
             .insert({
               email: user.email!,
