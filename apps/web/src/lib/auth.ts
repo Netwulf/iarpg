@@ -31,6 +31,7 @@ export const authConfig: NextAuthConfig = {
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
+          console.error('[Auth] Missing credentials');
           return null;
         }
 
@@ -41,6 +42,7 @@ export const authConfig: NextAuthConfig = {
           .single();
 
         if (error || !user || !user.password_hash) {
+          console.error('[Auth] User not found or no password_hash:', { error, hasUser: !!user, hasHash: !!user?.password_hash });
           return null;
         }
 
@@ -48,6 +50,8 @@ export const authConfig: NextAuthConfig = {
           credentials.password as string,
           user.password_hash
         );
+
+        console.log('[Auth] Password validation result:', isPasswordValid);
 
         if (!isPasswordValid) {
           return null;
