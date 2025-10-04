@@ -5,8 +5,14 @@ import DiscordProvider from 'next-auth/providers/discord';
 import { supabase } from '@iarpg/db';
 import bcrypt from 'bcryptjs';
 
+// Validate required environment variables
+if (!process.env.NEXTAUTH_SECRET) {
+  throw new Error('NEXTAUTH_SECRET environment variable is not set');
+}
+
 export const authConfig: NextAuthConfig = {
   trustHost: true, // Required for production deployments (Vercel)
+  secret: process.env.NEXTAUTH_SECRET,
   session: {
     strategy: 'jwt',
     maxAge: 30 * 24 * 60 * 60, // 30 days
