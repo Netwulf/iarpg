@@ -17,12 +17,14 @@ export async function middleware(request: NextRequest) {
 
     // Redirect authenticated users away from auth pages
     if (isAuthPage && session) {
-      return NextResponse.redirect(new URL('/dashboard', request.url));
+      const url = new URL('/dashboard', request.nextUrl.origin);
+      return NextResponse.redirect(url);
     }
 
     // Redirect unauthenticated users to login
     if (isProtectedRoute && !session) {
-      return NextResponse.redirect(new URL('/login', request.url));
+      const url = new URL('/login', request.nextUrl.origin);
+      return NextResponse.redirect(url);
     }
 
     return NextResponse.next();
