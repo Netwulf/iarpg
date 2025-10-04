@@ -6,6 +6,7 @@ import { supabase } from '@iarpg/db';
 import bcrypt from 'bcryptjs';
 
 export const authConfig: NextAuthConfig = {
+  trustHost: true, // Required for production deployments (Vercel)
   session: {
     strategy: 'jwt',
     maxAge: 30 * 24 * 60 * 60, // 30 days
