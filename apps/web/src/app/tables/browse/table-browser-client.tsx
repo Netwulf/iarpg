@@ -48,12 +48,28 @@ export function TableBrowserClient() {
   const fetchTables = async () => {
     setLoading(true);
     try {
-      // TODO: Implement actual API call
-      // const response = await apiClient.get('/tables', { params: { ...filters, page } });
+      // Build query params
+      const params = new URLSearchParams();
+      if (filters.search) params.append('search', filters.search);
+      if (filters.playStyles.length > 0) params.append('playStyles', filters.playStyles.join(','));
+      if (filters.tags.length > 0) params.append('tags', filters.tags.join(','));
+      params.append('page', page.toString());
+      params.append('limit', '12');
 
-      // Mock data for now
-      setTables([]);
-      setTotalPages(1);
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/tables?${params.toString()}`,
+        {
+          credentials: 'include',
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch tables');
+      }
+
+      const data = await response.json();
+      setTables(data.tables || []);
+      setTotalPages(data.pagination?.totalPages || 1);
     } catch (error) {
       console.error('Failed to fetch tables:', error);
     } finally {
