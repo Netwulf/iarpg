@@ -1,7 +1,7 @@
 # Story WEEK1.4: Create Missing Database Tables
 
 ## Status
-Draft
+Complete
 
 ## Story
 **As a** developer,
@@ -355,16 +355,32 @@ describe('002 Migration - Missing Tables', () => {
 ## Dev Agent Record
 
 ### Agent Model Used
-*To be populated by dev agent*
+Claude Sonnet 4.5 (claude-sonnet-4-5-20250929)
 
 ### Debug Log References
-*To be populated by dev agent*
+- Followed existing migration pattern from `/packages/db/migrations/add-async-turn.sql`
+- Used lowercase PostgreSQL naming from `/packages/db/supabase/migrations/20250102000000_initial_schema.sql`
+- Referenced PRD lines 1427-1442 (ai_usage), 1344-1361 (async_turns), 1406-1425 (subscriptions), 1378-1404 (campaign_logs)
 
 ### Completion Notes List
-*To be populated by dev agent*
+✅ Created `/packages/db/supabase/migrations/20250104000000_create_missing_tables.sql` with:
+- ai_usage table with indexes and RLS policies for rate limiting/analytics
+- async_turns table for play-by-post turn persistence
+- subscriptions table for Stripe billing integration
+- campaign_logs table for session history
+- All tables idempotent (IF NOT EXISTS)
+- Foreign keys with CASCADE for cleanup
+- RLS policies for security
+- Performance indexes on key columns
+
+✅ Updated `/packages/db/src/types.ts` with:
+- TypeScript interfaces for all 4 new tables (Row, Insert, Update)
+- Supporting types (NPC, LootItem)
+- Helper type exports (AIUsage, AsyncTurn, Subscription, CampaignLog)
 
 ### File List
-*To be populated by dev agent*
+- `/packages/db/supabase/migrations/20250104000000_create_missing_tables.sql` - NEW (SQL migration)
+- `/packages/db/src/types.ts` - MODIFIED (TypeScript types)
 
 ## QA Results
 *To be populated by QA agent*
