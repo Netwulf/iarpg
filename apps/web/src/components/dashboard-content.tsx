@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { Button, Card, CardContent } from '@iarpg/ui';
 import Link from 'next/link';
+import { fetchWithAuth } from '@/lib/fetch-with-auth';
 
 export function DashboardContent() {
   const { data: session, status } = useSession();
@@ -34,14 +35,10 @@ export function DashboardContent() {
       setLoading(true);
       setError('');
 
-      // Fetch characters and tables in parallel
+      // Fetch characters and tables in parallel with JWT authentication
       const [charactersRes, tablesRes] = await Promise.all([
-        fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/characters`, {
-          credentials: 'include',
-        }),
-        fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tables`, {
-          credentials: 'include',
-        }),
+        fetchWithAuth(`${process.env.NEXT_PUBLIC_API_URL}/api/characters`),
+        fetchWithAuth(`${process.env.NEXT_PUBLIC_API_URL}/api/tables`),
       ]);
 
       if (!charactersRes.ok || !tablesRes.ok) {

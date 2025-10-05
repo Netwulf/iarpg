@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Button, Card, CardContent, Input, Label } from '@iarpg/ui';
 import { Search, X, Plus } from 'lucide-react';
 import { TableCard } from '@/components/tables/table-card';
+import { fetchWithAuth } from '@/lib/fetch-with-auth';
 
 interface Table {
   id: string;
@@ -56,11 +57,9 @@ export function TableBrowserClient() {
       params.append('page', page.toString());
       params.append('limit', '12');
 
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/tables?${params.toString()}`,
-        {
-          credentials: 'include',
-        }
+      // Fetch tables with JWT authentication
+      const response = await fetchWithAuth(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/tables?${params.toString()}`
       );
 
       if (!response.ok) {

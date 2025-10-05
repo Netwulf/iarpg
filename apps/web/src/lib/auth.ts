@@ -4,6 +4,7 @@ import GoogleProvider from 'next-auth/providers/google';
 import DiscordProvider from 'next-auth/providers/discord';
 import { createSupabaseAdmin } from '@iarpg/db';
 import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 
 // Validate required environment variables
 if (!process.env.NEXTAUTH_SECRET) {
@@ -77,7 +78,7 @@ export const authConfig: NextAuthConfig = {
     }),
   ],
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user, trigger }) {
       if (user) {
         token.id = user.id;
         token.tier = (user as any).tier;
@@ -89,6 +90,21 @@ export const authConfig: NextAuthConfig = {
         (session.user as any).id = token.id as string;
         (session.user as any).tier = token.tier as string;
       }
+
+      // Generate a custom JWT token for backend API calls
+      // Backend expects: {id, email, name, tier}
+      const apiToken = jwt.sign(
+        {
+          id: token.id as string,
+          email: token.email as string,
+          name: token.name as string,
+          tier: token.tier as string,
+        },
+        process.env.NEXTAUTH_SECRET!,
+        { expiresIn: '30d' }
+      );
+
+      (session as any).accessToken = apiToken;
       return session;
     },
     async signIn({ user, account }) {
