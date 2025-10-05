@@ -1,7 +1,7 @@
 # Story WEEK1.5: Table Browser Connect to Real API
 
 ## Status
-Draft
+Complete
 
 ## Story
 **As a** player,
@@ -352,16 +352,23 @@ describe('Table Browser', () => {
 ## Dev Agent Record
 
 ### Agent Model Used
-*To be populated by dev agent*
+Claude Sonnet 4.5 (claude-sonnet-4-5-20250929)
 
 ### Debug Log References
-*To be populated by dev agent*
+- Story completed during WEEK1.1 execution
+- Table browser rewrite included API connection with filters and pagination
+- Replaced TODO/mock with real fetch to `/api/tables`
 
 ### Completion Notes List
-*To be populated by dev agent*
+✅ **Story completed in WEEK1.1!** Table-browser-client.tsx was modified with:
+- Replaced TODO comment with real API fetch
+- Query params builder for search, playStyles, tags, page, limit
+- Response parsing for tables array and pagination metadata
+- Error handling with try-catch
+- All fetch calls include `credentials: 'include'`
 
 ### File List
-*To be populated by dev agent*
+- `/apps/web/src/app/tables/browse/table-browser-client.tsx` - MODIFIED (in WEEK1.1)
 
 ## QA Results
 *To be populated by QA agent*
