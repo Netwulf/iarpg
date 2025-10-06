@@ -1,0 +1,31 @@
+version: 1.0.0
+installed_at: '2025-10-05T15:22:32.323Z'
+install_type: expansion-pack
+expansion_pack_id: meeting-notes
+expansion_pack_name: meeting-notes
+ides_setup:
+  - cursor
+  - claude-code
+  - windsurf
+files:
+  - path: .meeting-notes/config.yaml
+    hash: 6bf39e01c9331725
+    modified: false
+  - path: .meeting-notes/README.md
+    hash: 30802bc34a0106c6
+    modified: false
+  - path: .meeting-notes/templates/meeting-notes-template.yaml
+    hash: 7c45c851d2b0f83b
+    modified: false
+  - path: .meeting-notes/tasks/create-meeting-notes.md
+    hash: d83db9b50a3a85c2
+    modified: false
+  - path: .meeting-notes/checklists/meeting-effectiveness-checklist.md
+    hash: 6ee30974101d160d
+    modified: false
+  - path: .meeting-notes/data/meeting-best-practices.md
+    hash: 84c891cb3bfc24ae
+    modified: false
+  - path: .meeting-notes/agents/meeting-organizer.md
+    hash: 744c4f89a1c9d78b
+    modified: false

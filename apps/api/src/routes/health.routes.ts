@@ -1,12 +1,13 @@
 import { Router } from 'express';
-import { supabase } from '@iarpg/db';
+import { createSupabaseAdmin } from '@iarpg/db';
 
 const router = Router();
 
 router.get('/', async (req, res) => {
   try {
-    // Test Supabase connection
-    const { data, error } = await supabase.from('users').select('count').limit(1).single();
+    // Test Supabase connection using admin client (bypasses RLS)
+    const supabaseAdmin = createSupabaseAdmin();
+    const { data, error } = await supabaseAdmin.from('users').select('count').limit(1).single();
 
     if (error && error.code !== 'PGRST116') {
       // PGRST116 = no rows returned (acceptable for empty table)
@@ -34,8 +35,9 @@ router.get('/', async (req, res) => {
 // Database-specific health check
 router.get('/db', async (req, res) => {
   try {
-    // Simple connection test
-    const { error } = await supabase.from('users').select('count').limit(1);
+    // Simple connection test using admin client (bypasses RLS)
+    const supabaseAdmin = createSupabaseAdmin();
+    const { error } = await supabaseAdmin.from('users').select('count').limit(1);
 
     if (error && error.code !== 'PGRST116') {
       throw error;

@@ -1,0 +1,42 @@
+version: 1.10.0
+installed_at: '2025-10-05T15:22:32.290Z'
+install_type: expansion-pack
+expansion_pack_id: aios-infrastructure-devops
+expansion_pack_name: aios-infrastructure-devops
+ides_setup:
+  - cursor
+  - claude-code
+  - windsurf
+files:
+  - path: .aios-infrastructure-devops/config.yaml
+    hash: d2f4aaaca2e224df
+    modified: false
+  - path: .aios-infrastructure-devops/README.md
+    hash: c85322b48cb274a5
+    modified: false
+  - path: .aios-infrastructure-devops/tasks/validate-infrastructure.md
+    hash: 373456cc964c59e9
+    modified: false
+  - path: .aios-infrastructure-devops/tasks/review-infrastructure.md
+    hash: e187cbf2574cd69b
+    modified: false
+  - path: >-
+      .aios-infrastructure-devops/templates/infrastructure-platform-from-arch-tmpl.yaml
+    hash: 7193cc059d2a2039
+    modified: false
+  - path: >-
+      .aios-infrastructure-devops/templates/infrastructure-architecture-tmpl.yaml
+    hash: c7d331cecd063bb8
+    modified: false
+  - path: .aios-infrastructure-devops/data/technical-preferences.md
+    hash: 6530bed845540b0d
+    modified: false
+  - path: .aios-infrastructure-devops/data/aios-kb.md
+    hash: 0315a21896922c74
+    modified: false
+  - path: .aios-infrastructure-devops/checklists/infrastructure-checklist.md
+    hash: b1808d32dcd787d7
+    modified: false
+  - path: .aios-infrastructure-devops/agents/infra-devops-platform.md
+    hash: c025112707c3ff89
+    modified: false
