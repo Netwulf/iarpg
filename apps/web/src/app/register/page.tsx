@@ -127,14 +127,11 @@ export default function RegisterPage() {
             <div className="absolute inset-0 flex items-center">
               <div className="w-full border-t border-gray-800"></div>
             </div>
-            {/* OAuth separator - disabled with OAuth buttons
             <div className="relative flex justify-center text-sm">
               <span className="bg-gray-900 px-2 text-gray-400">Or sign up with</span>
             </div>
-            */}
           </div>
 
-          {/* ⚠️ OAuth buttons disabled until providers are configured
           <div className="space-y-2">
             <Button
               variant="outline"
@@ -151,7 +148,6 @@ export default function RegisterPage() {
               Sign up with Discord
             </Button>
           </div>
-          */}
 
           <p className="text-center text-small text-gray-400">
             Already have an account?{' '}

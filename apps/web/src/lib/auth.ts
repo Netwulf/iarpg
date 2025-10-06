@@ -68,16 +68,14 @@ export const authConfig: NextAuthConfig = {
         };
       },
     }),
-    // ⚠️ TEMPORARILY DISABLED: OAuth providers without credentials
-    // causing issues in production. Re-enable when credentials are configured.
-    // GoogleProvider({
-    //   clientId: process.env.GOOGLE_CLIENT_ID || '',
-    //   clientSecret: process.env.GOOGLE_CLIENT_SECRET || '',
-    // }),
-    // DiscordProvider({
-    //   clientId: process.env.DISCORD_CLIENT_ID || '',
-    //   clientSecret: process.env.DISCORD_CLIENT_SECRET || '',
-    // }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID || '',
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET || '',
+    }),
+    DiscordProvider({
+      clientId: process.env.DISCORD_CLIENT_ID || '',
+      clientSecret: process.env.DISCORD_CLIENT_SECRET || '',
+    }),
   ],
   callbacks: {
     async jwt({ token, user, trigger }) {
@@ -110,28 +108,27 @@ export const authConfig: NextAuthConfig = {
       return session;
     },
     async signIn({ user, account }) {
-      // ⚠️ DISABLED: OAuth sign-in logic (providers currently disabled)
-      // if (account?.provider === 'google' || account?.provider === 'discord') {
-      //   const supabaseAdmin = createSupabaseAdmin();
+      if (account?.provider === 'google' || account?.provider === 'discord') {
+        const supabaseAdmin = createSupabaseAdmin();
 
-      //   // Check if user exists
-      //   const { data: existingUser } = await (supabaseAdmin
-      //     .from('users') as any)
-      //     .select('*')
-      //     .eq('email', user.email!)
-      //     .single();
+        // Check if user exists
+        const { data: existingUser } = await (supabaseAdmin
+          .from('users') as any)
+          .select('*')
+          .eq('email', user.email!)
+          .single();
 
-      //   if (!existingUser) {
-      //     // Create user from OAuth
-      //     await (supabaseAdmin
-      //       .from('users') as any)
-      //       .insert({
-      //         email: user.email!,
-      //         username: user.email!.split('@')[0] + Math.random().toString(36).substring(7),
-      //         tier: 'free',
-      //       });
-      //   }
-      // }
+        if (!existingUser) {
+          // Create user from OAuth
+          await (supabaseAdmin
+            .from('users') as any)
+            .insert({
+              email: user.email!,
+              username: user.email!.split('@')[0] + Math.random().toString(36).substring(7),
+              tier: 'free',
+            });
+        }
+      }
       return true;
     },
   },
