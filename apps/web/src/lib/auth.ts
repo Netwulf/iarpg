@@ -31,6 +31,8 @@ export const authConfig: NextAuthConfig = {
         password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials) {
+        console.log('[Auth] authorize() called with email:', credentials?.email);
+
         if (!credentials?.email || !credentials?.password) {
           console.error('[Auth] Missing credentials');
           return null;
@@ -57,15 +59,19 @@ export const authConfig: NextAuthConfig = {
         console.log('[Auth] Password validation result:', isPasswordValid);
 
         if (!isPasswordValid) {
+          console.error('[Auth] Invalid password');
           return null;
         }
 
-        return {
+        const authUser = {
           id: user.id,
           email: user.email,
           name: user.username,
           tier: user.tier,
         };
+
+        console.log('[Auth] authorize() SUCCESS, returning user:', authUser.email);
+        return authUser;
       },
     }),
     GoogleProvider({
