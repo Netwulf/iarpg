@@ -1,0 +1,108 @@
+# Supabase Configuration for IA-RPG
+# Docs: https://supabase.com/docs/guides/cli/config
+
+[api]
+# API port (local development)
+port = 54321
+# Schema to expose via REST API
+schemas = ["public", "storage"]
+# Additional schemas for GraphQL API
+extra_search_path = ["public"]
+# Max rows returned in a single request
+max_rows = 1000
+
+[db]
+# PostgreSQL port (local development)
+port = 54322
+# Database name
+database = "postgres"
+# Max connections
+pool_size = 15
+# Connection timeout
+timeout = 30000
+
+[studio]
+# Supabase Studio port (local development)
+port = 54323
+
+[auth]
+# Auth port (local development)
+port = 54324
+
+# JWT settings
+[auth.jwt]
+# JWT expiry time (in seconds)
+exp = 3600
+# JWT algorithm
+algorithm = "HS256"
+
+# External OAuth providers
+[auth.external.google]
+enabled = true
+client_id = "env(GOOGLE_CLIENT_ID)"
+secret = "env(GOOGLE_CLIENT_SECRET)"
+redirect_uri = "https://iarpg-web.vercel.app/api/auth/callback/google"
+
+[auth.external.discord]
+enabled = true
+client_id = "env(DISCORD_CLIENT_ID)"
+secret = "env(DISCORD_CLIENT_SECRET)"
+redirect_uri = "https://iarpg-web.vercel.app/api/auth/callback/discord"
+
+# Email settings (if using Supabase Auth for email)
+[auth.email]
+enable_signup = true
+double_confirm_changes = true
+enable_confirmations = false
+
+# Storage configuration
+[storage]
+# Storage port (local development)
+port = 54325
+# Max file upload size (in MB)
+file_size_limit = 50
+
+# Buckets
+[[storage.buckets]]
+name = "avatars"
+public = true
+file_size_limit = 2097152 # 2MB
+allowed_mime_types = ["image/png", "image/jpeg", "image/webp"]
+
+[[storage.buckets]]
+name = "maps"
+public = true
+file_size_limit = 5242880 # 5MB
+allowed_mime_types = ["image/png", "image/jpeg", "image/webp"]
+
+# Realtime configuration (if needed)
+[realtime]
+port = 54326
+
+# Edge Functions (if needed)
+[edge_functions]
+enabled = false
+
+# Analytics
+[analytics]
+enabled = true
+
+# Database Backups
+[db.backup]
+enabled = true
+# Backup retention (days)
+retention_days = 30
+# Backup schedule (cron)
+schedule = "0 2 * * *"  # Daily at 2 AM UTC
+
+# Row Level Security (RLS)
+[db.rls]
+# Enforce RLS on all tables by default
+enabled = true
+
+# Connection Pooling (PgBouncer)
+[db.pooler]
+enabled = true
+pool_mode = "transaction"
+default_pool_size = 20
+max_client_conn = 100

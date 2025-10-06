@@ -1,7 +1,7 @@
 # IA-RPG Product Requirements Document (PRD) - MERGED VERSION
 
-**Version:** 1.1 (Merged)
-**Date:** September 30, 2025
+**Version:** 1.2 (Brownfield Enhancement)
+**Date:** October 6, 2025
 **Status:** Approved - Ready for Development
 **Owner:** John (Product Manager)
 
@@ -45,6 +45,7 @@ IA-RPG resolve esse problema oferecendo uma plataforma web integrada que permite
 |------------|---------|----------------------------------|--------------|
 | 2025-09-30 | 1.0     | Initial PRD creation from brief  | John (PM)    |
 | 2025-09-30 | 1.1     | Merged with design system & specs| John (PM)    |
+| 2025-10-06 | 1.2     | Added Epics 11-13 (Brownfield)   | John (PM)    |
 
 ### 1.4 Important Notes
 
@@ -1809,6 +1810,57 @@ Otimizar experiência mobile (touch gestures, responsive), implementar PWA.
 
 ### Epic 10: Polish, Analytics & Launch Preparation
 UI/UX polish, performance optimization, analytics, monitoring, onboarding refinement.
+
+### Epic 11: Critical Fixes & Integration (Brownfield - WEEK1)
+Resolver bugs críticos identificados no sistema existente: auth credentials, WebSocket connection, database schema gaps, e health checks.
+
+**Context:** Brownfield enhancement cycle - sistema já estava parcialmente implementado mas com 5 bugs críticos bloqueando produção.
+
+**Stories:**
+- 11.1: Fix Auth Credentials (cookies não enviados)
+- 11.2: Connect WebSocket (SocketContext não conectava)
+- 11.3: Database Cleanup (orphaned data)
+- 11.4: Prisma Schema Gaps (4 tabelas faltando)
+- 11.5: Health Checks & CORS (Railway + Vercel)
+
+**Success Metrics:**
+- Zero auth failures
+- WebSocket connection rate >99%
+- Database consistency 100%
+- Uptime >99.5%
+
+### Epic 12: Testing Infrastructure (Brownfield - WEEK2)
+Estabelecer infraestrutura de testes automatizados: Playwright para E2E, Jest para unit tests, cobertura de flows críticos.
+
+**Context:** Sistema funcionava mas sem testes automáticos, gerando risco de regressions. Implementação de test pyramid completo.
+
+**Stories:**
+- 12.1: Setup Playwright E2E
+- 12.2: Setup Jest Unit Tests
+- 12.3: E2E Critical Flows (auth, character, table, chat, dice)
+- 12.4: Unit Tests Critical Routes (validation, API, utilities)
+
+**Success Metrics:**
+- E2E test success rate >95%
+- Unit test coverage >70%
+- CI test time <5min
+- Bugs caught by tests >50%
+
+### Epic 13: QA Validation & Edge Cases (Brownfield - WEEK3)
+Validação completa de qualidade: testes de fluxos críticos, edge cases, bugs de UI/UX, e preparação para lançamento.
+
+**Context:** QA sistemático após WEEK1/WEEK2 fixes. Identificação e resolução de 23 bugs antes do lançamento.
+
+**Stories:**
+- 13.1: Validate Critical Flows (manual QA)
+- 13.2: Edge Case Validation (OAuth errors, MetaMask)
+- 13.3: UI/UX Bug Fixes (mobile responsiveness, animations)
+
+**Success Metrics:**
+- Zero critical bugs
+- User flows 100% testados
+- Mobile UX score >90%
+- Lançamento ready
 
 ---
 
