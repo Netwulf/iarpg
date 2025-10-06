@@ -19,6 +19,31 @@ function generateInviteCode(): string {
   return code;
 }
 
+// Generate unique invite code with collision check
+async function generateUniqueInviteCode(): Promise<string> {
+  const maxAttempts = 10;
+
+  for (let attempt = 0; attempt < maxAttempts; attempt++) {
+    const code = generateInviteCode();
+
+    // Check if code already exists
+    const { data } = await (supabase
+      .from('tables') as any)
+      .select('id')
+      .eq('invite_code', code)
+      .single();
+
+    if (!data) {
+      return code; // Unique code found!
+    }
+
+    // Code exists, try again
+    console.log(`Invite code collision detected: ${code}, retrying...`);
+  }
+
+  throw new AppError('Failed to generate unique invite code after 10 attempts', 500, 'CODE_GENERATION_FAILED');
+}
+
 // POST /api/tables - Create a new table
 router.post('/', async (req, res, next) => {
   try {
@@ -55,8 +80,8 @@ router.post('/', async (req, res, next) => {
       throw new AppError('Max players must be between 2 and 8', 400, 'VALIDATION_ERROR');
     }
 
-    // Generate unique invite code
-    const inviteCode = generateInviteCode();
+    // Generate unique invite code (with collision detection)
+    const inviteCode = await generateUniqueInviteCode();
 
     // Create table in Supabase
     const { data: table, error } = await (supabase

@@ -22,6 +22,19 @@ router.post('/', async (req, res, next) => {
       throw new AppError('Valid ability scores are required', 400, 'VALIDATION_ERROR');
     }
 
+    // Validate ability scores range (3-20 per D&D 5e rules)
+    const abilities = ['strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma'];
+    for (const ability of abilities) {
+      const score = abilityScores[ability];
+      if (typeof score !== 'number' || score < 3 || score > 20) {
+        throw new AppError(
+          `${ability} must be a number between 3 and 20 (got ${score})`,
+          400,
+          'VALIDATION_ERROR'
+        );
+      }
+    }
+
     // Calculate derived stats
     const constitutionModifier = Math.floor((abilityScores.constitution - 10) / 2);
     const dexterityModifier = Math.floor((abilityScores.dexterity - 10) / 2);
@@ -42,11 +55,29 @@ router.post('/', async (req, res, next) => {
       Wizard: 6,
     };
 
-    const hitDie = hitDice[className] || 8;
-    const maxHP = hitDie + constitutionModifier;
+    const hitDie = hitDice[className];
+    if (!hitDie) {
+      throw new AppError(
+        `Invalid class name: ${className}. Must be one of: ${Object.keys(hitDice).join(', ')}`,
+        400,
+        'VALIDATION_ERROR'
+      );
+    }
+
+    const characterLevel = level || 1;
+
+    // Calculate HP: Level 1 gets max hit die, subsequent levels get average
+    let maxHP = hitDie + constitutionModifier; // Level 1
+    for (let i = 2; i <= characterLevel; i++) {
+      const averageRoll = Math.floor((hitDie / 2) + 1);
+      maxHP += averageRoll + constitutionModifier;
+    }
+
     const armorClass = 10 + dexterityModifier; // Base AC
     const initiative = dexterityModifier;
-    const proficiencyBonus = 2; // Level 1
+
+    // Calculate proficiency bonus based on level (D&D 5e formula)
+    const proficiencyBonus = 2 + Math.floor((characterLevel - 1) / 4);
 
     // Speed by race
     const speeds: Record<string, number> = {
@@ -172,10 +203,64 @@ router.patch('/:id', async (req, res, next) => {
       throw new AppError('Not authorized to modify this character', 403, 'FORBIDDEN');
     }
 
-    // Update character
+    // Whitelist allowed fields for update (prevent cheating)
+    const allowedUpdates = [
+      'name',
+      'background',
+      'equipment',
+      'notes',
+      'avatar_url',
+      // If level changes, we need to recalculate derived stats
+      'level',
+    ];
+
+    const updates: any = {};
+    for (const key of allowedUpdates) {
+      if (req.body[key] !== undefined) {
+        updates[key] = req.body[key];
+      }
+    }
+
+    // If level changed, recalculate derived stats
+    if (updates.level && updates.level !== character.level) {
+      const newLevel = updates.level;
+
+      // Recalculate HP
+      const hitDice: Record<string, number> = {
+        Barbarian: 12,
+        Fighter: 10,
+        Paladin: 10,
+        Ranger: 10,
+        Bard: 8,
+        Cleric: 8,
+        Druid: 8,
+        Monk: 8,
+        Rogue: 8,
+        Warlock: 8,
+        Sorcerer: 6,
+        Wizard: 6,
+      };
+
+      const hitDie = hitDice[character.class] || 8;
+      const conMod = Math.floor((character.constitution - 10) / 2);
+
+      let newMaxHP = hitDie + conMod; // Level 1
+      for (let i = 2; i <= newLevel; i++) {
+        const averageRoll = Math.floor((hitDie / 2) + 1);
+        newMaxHP += averageRoll + conMod;
+      }
+
+      updates.max_hp = newMaxHP;
+      updates.hp = Math.min(character.hp, newMaxHP); // Don't exceed new max
+
+      // Recalculate proficiency bonus
+      updates.proficiency_bonus = 2 + Math.floor((newLevel - 1) / 4);
+    }
+
+    // Update character with only allowed fields
     const { data: updatedCharacter, error: updateError } = await (supabase
       .from('characters') as any)
-      .update(req.body)
+      .update(updates)
       .eq('id', req.params.id)
       .select()
       .single();

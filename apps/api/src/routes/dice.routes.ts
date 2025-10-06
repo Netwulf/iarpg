@@ -20,8 +20,32 @@ router.post('/:id/roll', async (req, res, next) => {
       throw new AppError('Dice notation is required', 400, 'VALIDATION_ERROR');
     }
 
-    // TODO: Verify user is member of table
-    // For now, we'll skip this check
+    // Verify user is member of table or table owner
+    const { supabase } = await import('@iarpg/db');
+
+    // Check if user is owner of the table
+    const { data: table } = await (supabase
+      .from('tables') as any)
+      .select('owner_id')
+      .eq('id', tableId)
+      .single();
+
+    const isOwner = table?.owner_id === userId;
+
+    // If not owner, check if user is a member
+    if (!isOwner) {
+      const { data: member } = await (supabase
+        .from('table_members') as any)
+        .select('id')
+        .eq('table_id', tableId)
+        .eq('user_id', userId)
+        .eq('status', 'active')
+        .single();
+
+      if (!member) {
+        throw new AppError('You are not a member of this table', 403, 'FORBIDDEN');
+      }
+    }
 
     // Roll the dice
     let roll;
@@ -58,12 +82,42 @@ router.post('/:id/roll', async (req, res, next) => {
       createdAt: new Date().toISOString(),
     };
 
+    // Save roll to database as a special message
+    const { data: savedMessage, error: saveError } = await (supabase
+      .from('messages') as any)
+      .insert({
+        table_id: tableId,
+        user_id: userId,
+        character_id: null,
+        content: rollResult.breakdown,
+        type: 'system',
+        dice_rolls: [rollResult],
+        reactions: [],
+      })
+      .select(`
+        *,
+        user:users!user_id (
+          id,
+          username,
+          avatar_url
+        )
+      `)
+      .single();
+
+    if (saveError) {
+      console.error('Failed to save dice roll to database:', saveError);
+      // Don't block the response, but log the error
+    }
+
     // Broadcast via Socket.io
     const io = getIO();
     io.to(`table:${tableId}`).emit('roll:new', rollResult);
 
-    // TODO: Save to database
-    // For now, just return the roll
+    // Update table last_activity_at
+    await (supabase
+      .from('tables') as any)
+      .update({ last_activity_at: new Date().toISOString() })
+      .eq('id', tableId);
 
     res.status(201).json(rollResult);
   } catch (error) {
