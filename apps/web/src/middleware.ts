@@ -1,10 +1,16 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { auth } from '@/lib/auth';
 
+/**
+ * Edge Runtime-compatible middleware
+ * Authentication checks are delegated to page-level auth() calls
+ * This middleware only handles basic routing logic
+ */
 export async function middleware(request: NextRequest) {
   try {
-    const session = await auth();
+    // Check for session cookie (lightweight check without importing auth)
+    const sessionToken = request.cookies.get('next-auth.session-token') ||
+                        request.cookies.get('__Secure-next-auth.session-token');
 
     const isAuthPage = request.nextUrl.pathname.startsWith('/login') ||
                        request.nextUrl.pathname.startsWith('/register');
@@ -16,13 +22,13 @@ export async function middleware(request: NextRequest) {
       request.nextUrl.pathname.startsWith('/profile');
 
     // Redirect authenticated users away from auth pages
-    if (isAuthPage && session) {
+    if (isAuthPage && sessionToken) {
       const url = new URL('/dashboard', request.nextUrl.origin);
       return NextResponse.redirect(url);
     }
 
     // Redirect unauthenticated users to login
-    if (isProtectedRoute && !session) {
+    if (isProtectedRoute && !sessionToken) {
       const url = new URL('/login', request.nextUrl.origin);
       return NextResponse.redirect(url);
     }

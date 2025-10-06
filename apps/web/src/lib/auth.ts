@@ -4,7 +4,7 @@ import GoogleProvider from 'next-auth/providers/google';
 import DiscordProvider from 'next-auth/providers/discord';
 import { createSupabaseAdmin } from '@iarpg/db';
 import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
+import * as jose from 'jose';
 
 // Validate required environment variables
 if (!process.env.NEXTAUTH_SECRET) {
@@ -97,18 +97,18 @@ export const authConfig: NextAuthConfig = {
         (session.user as any).tier = token.tier as string;
       }
 
-      // Generate a custom JWT token for backend API calls
+      // Generate a custom JWT token for backend API calls using jose (Edge-compatible)
       // Backend expects: {id, email, name, tier}
-      const apiToken = jwt.sign(
-        {
-          id: token.id as string,
-          email: token.email as string,
-          name: token.name as string,
-          tier: token.tier as string,
-        },
-        process.env.NEXTAUTH_SECRET!,
-        { expiresIn: '30d' }
-      );
+      const secret = new TextEncoder().encode(process.env.NEXTAUTH_SECRET!);
+      const apiToken = await new jose.SignJWT({
+        id: token.id as string,
+        email: token.email as string,
+        name: token.name as string,
+        tier: token.tier as string,
+      })
+        .setProtectedHeader({ alg: 'HS256' })
+        .setExpirationTime('30d')
+        .sign(secret);
 
       (session as any).accessToken = apiToken;
       return session;
