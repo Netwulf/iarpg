@@ -9,9 +9,32 @@ let ioInstance: SocketIOServer | null = null;
 const disconnectTimeouts = new Map<string, NodeJS.Timeout>();
 
 export function setupSocket(httpServer: HTTPServer) {
+  // Allow multiple origins for flexibility
+  const allowedOrigins = [
+    'http://localhost:3000',
+    'http://localhost:3001',
+    'https://iarpg-web.vercel.app',
+    'https://iarpg-98aq3zzk5-tays-projects-cdc23402.vercel.app', // Preview deployments
+  ];
+
+  // Add custom origin from env if provided
+  if (process.env.CORS_ORIGIN) {
+    allowedOrigins.push(process.env.CORS_ORIGIN);
+  }
+
   const io = new SocketIOServer(httpServer, {
     cors: {
-      origin: process.env.CORS_ORIGIN || 'http://localhost:3000',
+      origin: (origin, callback) => {
+        // Allow requests with no origin (like mobile apps or Postman)
+        if (!origin) return callback(null, true);
+
+        // Check if origin is in whitelist or matches Vercel pattern
+        if (allowedOrigins.includes(origin) || origin.includes('.vercel.app')) {
+          callback(null, true);
+        } else {
+          callback(new Error(`CORS: Origin ${origin} not allowed`));
+        }
+      },
       credentials: true,
     },
   });
