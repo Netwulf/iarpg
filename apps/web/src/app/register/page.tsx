@@ -34,19 +34,12 @@ export default function RegisterPage() {
         return;
       }
 
-      // Auto-login after registration
-      const result = await signIn('credentials', {
+      // Auto-login after registration - use NextAuth's built-in redirect
+      await signIn('credentials', {
         email,
         password,
-        redirect: false,
+        callbackUrl: '/dashboard',
       });
-
-      if (result?.error) {
-        setError('Registration succeeded but login failed. Please login manually.');
-      } else {
-        router.push('/dashboard');
-        router.refresh();
-      }
     } catch (err) {
       setError('An error occurred. Please try again.');
     } finally {

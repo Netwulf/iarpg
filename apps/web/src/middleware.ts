@@ -9,7 +9,10 @@ import type { NextRequest } from 'next/server';
 export async function middleware(request: NextRequest) {
   try {
     // Check for session cookie (lightweight check without importing auth)
-    const sessionToken = request.cookies.get('next-auth.session-token') ||
+    // NextAuth v5 uses 'authjs' prefix, v4 uses 'next-auth' prefix
+    const sessionToken = request.cookies.get('authjs.session-token') ||
+                        request.cookies.get('__Secure-authjs.session-token') ||
+                        request.cookies.get('next-auth.session-token') ||
                         request.cookies.get('__Secure-next-auth.session-token');
 
     const isAuthPage = request.nextUrl.pathname.startsWith('/login') ||
