@@ -1,8 +1,0 @@
-[build]
-builder = "dockerfile"
-dockerfilePath = "Dockerfile"
-
-[deploy]
-startCommand = "pnpm --filter=api start"
-restartPolicyType = "on_failure"
-restartPolicyMaxRetries = 10
