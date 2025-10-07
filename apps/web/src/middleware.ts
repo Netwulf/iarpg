@@ -21,19 +21,31 @@ export async function middleware(request: NextRequest) {
       request.nextUrl.pathname.startsWith('/characters') ||
       request.nextUrl.pathname.startsWith('/profile');
 
-    // Redirect authenticated users away from auth pages
-    if (isAuthPage && sessionToken) {
-      const url = new URL('/dashboard', request.nextUrl.origin);
-      return NextResponse.redirect(url);
-    }
+    // Clone response to add headers
+    const response = isAuthPage && sessionToken
+      ? NextResponse.redirect(new URL('/dashboard', request.nextUrl.origin))
+      : isProtectedRoute && !sessionToken
+      ? NextResponse.redirect(new URL('/login', request.nextUrl.origin))
+      : NextResponse.next();
 
-    // Redirect unauthenticated users to login
-    if (isProtectedRoute && !sessionToken) {
-      const url = new URL('/login', request.nextUrl.origin);
-      return NextResponse.redirect(url);
-    }
+    // Add security headers
+    response.headers.set(
+      'Content-Security-Policy',
+      [
+        "default-src 'self'",
+        "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live",
+        "style-src 'self' 'unsafe-inline'",
+        "img-src 'self' data: https: blob:",
+        "font-src 'self' data:",
+        "connect-src 'self' https://*.supabase.co https://*.railway.app wss://*.supabase.co",
+        "frame-src 'self' https://vercel.live",
+      ].join('; ')
+    );
+    response.headers.set('X-Frame-Options', 'SAMEORIGIN');
+    response.headers.set('X-Content-Type-Options', 'nosniff');
+    response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
 
-    return NextResponse.next();
+    return response;
   } catch (error) {
     console.error('Middleware error:', error);
     // Allow request to continue on error to prevent breaking the app
