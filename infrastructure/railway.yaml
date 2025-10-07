@@ -3,8 +3,9 @@
 
 build:
   builder: NIXPACKS
-  buildCommand: pnpm build
-  startCommand: pnpm start
+  # Note: Railway uses apps/api/railway.json as source of truth
+  # This file is for documentation purposes
+  startCommand: npm run start  # Actual command from railway.json
   watchPatterns:
     - "**/*.ts"
     - "**/*.js"
