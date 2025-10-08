@@ -18,19 +18,17 @@ export default function LoginPage() {
     setError('');
     setLoading(true);
 
-    const result = await signIn('credentials', {
-      email,
-      password,
-      redirect: false,
-    });
-
-    setLoading(false);
-
-    if (result?.error) {
+    try {
+      // Use NextAuth's built-in redirect instead of manual navigation
+      await signIn('credentials', {
+        email,
+        password,
+        callbackUrl: '/dashboard',
+      });
+    } catch (error) {
+      // signIn with callbackUrl will redirect on success, so we only reach here on error
       setError('Invalid email or password');
-    } else {
-      router.push('/dashboard');
-      router.refresh();
+      setLoading(false);
     }
   };
 
