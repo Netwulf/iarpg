@@ -18,16 +18,20 @@ export default function LoginPage() {
     setError('');
     setLoading(true);
 
-    try {
-      // Use NextAuth's built-in redirect instead of manual navigation
-      await signIn('credentials', {
-        email,
-        password,
-        callbackUrl: '/dashboard',
-      });
-    } catch (error) {
-      // signIn with callbackUrl will redirect on success, so we only reach here on error
+    const result = await signIn('credentials', {
+      email,
+      password,
+      redirect: false,
+    });
+
+    if (result?.error) {
       setError('Invalid email or password');
+      setLoading(false);
+    } else if (result?.ok) {
+      // Force a full page reload to /dashboard to ensure middleware recognizes session
+      window.location.href = '/dashboard';
+    } else {
+      setError('An error occurred. Please try again.');
       setLoading(false);
     }
   };
